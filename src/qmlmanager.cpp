@@ -27,7 +27,7 @@ void QmlManager::defineTypes()
 	// spotify-qt
 	engine->rootContext()->setContextProperty("AppVersion", QCoreApplication::applicationVersion());
 	// spotify-qt-quick
-	engine->rootContext()->setContextProperty("LibVersion", QCoreApplication::applicationVersion());
+	engine->rootContext()->setContextProperty("LibVersion", LIB_VERSION);
 	// qt
 	engine->rootContext()->setContextProperty("QtVersion", QString("%1.%2")
 		.arg(QT_VERSION_MAJOR).arg(QT_VERSION_MINOR));
