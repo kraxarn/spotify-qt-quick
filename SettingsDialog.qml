@@ -135,7 +135,7 @@ Drawer {
 						}
 						Label {
 							id: appVersion
-							text: AppVersion
+							text: `${LibVersion} (spotify-qt ${AppVersion})`
 						}
 					}
 				}
