@@ -16,7 +16,9 @@ const loadPlaylist = id => {
 	tracks.forEach(track => trackListModel.append({
 		"id": track["id"],
 		"artist": track["artist"],
-		"track": track["name"]
+		"track": track["name"],
+		"artistId": track["artist_id"],
+		"albumId": track["album_id"]
 	}))
 
 	trackList.enabled = true
