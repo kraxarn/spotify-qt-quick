@@ -261,6 +261,13 @@ ApplicationWindow {
 				icon.name: "overflow-menu"
 				icon.source: icSrc("overflow-menu")
 				flat: true
+				onClicked: trackMenu.open()
+				TrackMenu {
+					id: trackMenu
+					trackId: model.id
+					artistId: model.artistId
+					albumId: model.albumId
+				}
 			}
 		}
 	}

@@ -10,6 +10,7 @@
         <file>qml/SearchView.qml</file>
         <file>qml/SettingsDialog.qml</file>
         <file>qml/SettingsLayout.qml</file>
+        <file>qml/TrackMenu.qml</file>
         <file>qml/main.qml</file>
         <file>qml/setup.qml</file>
         <!-- JS -->
