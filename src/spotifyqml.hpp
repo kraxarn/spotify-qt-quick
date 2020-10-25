@@ -24,6 +24,9 @@ public:
 	Q_INVOKABLE QString playTracksWithContext(int trackIndex, const QString &context);
 	Q_INVOKABLE QString playTrack(const QString &track);
 
+	// Playlists
+	Q_INVOKABLE QString addToPlaylist(const QString &playlistId, const QString &trackId);
+
 	// Other
 	Q_INVOKABLE void requestPlayback();
 	Q_INVOKABLE QString systemInfo();

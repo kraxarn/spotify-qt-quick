@@ -26,5 +26,6 @@
         <file>js/searchView.js</file>
         <file>js/settingsDialog.js</file>
         <file>js/setup.js</file>
+        <file>js/trackMenu.js</file>
     </qresource>
 </RCC>

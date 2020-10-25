@@ -145,3 +145,8 @@ QJsonObject SpotifyQml::getArtistPages(const QString &id)
 		}
 	);
 }
+
+QString SpotifyQml::addToPlaylist(const QString &playlistId, const QString &trackId)
+{
+	return spotify->addToPlaylist(playlistId, trackId);
+}
