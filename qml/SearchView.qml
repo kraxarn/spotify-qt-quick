@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-import "js/searchView.js" as JS
+import "/js/searchView.js" as JS
 
 ColumnLayout {
 	id: searchView

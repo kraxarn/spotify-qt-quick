@@ -7,7 +7,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
 import QtWebEngine 1.10
 
-import "js/setup.js" as JS
+import "/js/setup.js" as JS
 
 ApplicationWindow {
 	id: root

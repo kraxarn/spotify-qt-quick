@@ -52,7 +52,7 @@ void QmlManager::load(const QString &url)
 
 bool QmlManager::setup()
 {
-	load("qrc:/setup.qml");
+	load("qrc:/qml/setup.qml");
 	QCoreApplication::exec();
 	settings.load();
 
@@ -74,5 +74,5 @@ void QmlManager::main()
 				QCoreApplication::quit();
 		}, Qt::QueuedConnection);
 
-	engine->load(QUrl("qrc:/main.qml"));
+	engine->load(QUrl("qrc:/qml/main.qml"));
 }
