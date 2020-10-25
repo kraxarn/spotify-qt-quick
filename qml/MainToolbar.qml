@@ -49,17 +49,6 @@ ToolBar {
 			onClicked: mainMenu.open()
 			Menu {
 				id: mainMenu
-				Menu {
-					title: "Sort by"
-					MenuItem {
-						text: "Track"
-						icon.name: "view-media-track"
-					}
-					MenuItem {
-						text: "Artist"
-						icon.name: "view-media-artist"
-					}
-				}
 				MenuItem {
 					text: "Settings"
 					onClicked: settingsDrawer.open()
