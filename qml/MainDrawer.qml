@@ -52,6 +52,13 @@ Drawer {
 				enabled: false
 			}
 			ToolButton {
+				icon.name: "configure"
+				onClicked: {
+					drawer.close()
+					settingsDrawer.open()
+				}
+			}
+			ToolButton {
 				icon.name: "im-user-away"
 				onClicked: {
 					drawer.close()

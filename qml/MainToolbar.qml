@@ -43,17 +43,5 @@ ToolBar {
 				font.pixelSize: 20
 			}
 		}
-		ToolButton {
-			icon.name: "overflow-menu"
-			icon.source: icSrc("overflow-menu")
-			onClicked: mainMenu.open()
-			Menu {
-				id: mainMenu
-				MenuItem {
-					text: "Settings"
-					onClicked: settingsDrawer.open()
-				}
-			}
-		}
 	}
 }
