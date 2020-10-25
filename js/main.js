@@ -5,7 +5,7 @@ const playbackChanged = () => {
 
 	if (!playback["is_playing"] && playback["item"]["name"] === "(no name)") {
 		toolBar.currentArtist.text = null
-		toolBar.urrentTrack.text = "No media playing"
+		toolBar.currentTrack.text = "No media playing"
 		footer.playPause.icon.name = "media-playback-start"
 		return
 	}
