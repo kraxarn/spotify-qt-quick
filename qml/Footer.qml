@@ -4,7 +4,6 @@ import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 
 Pane {
-	id: footer
 	readonly property var playPause: playPause
 	readonly property var progress: progress
 	readonly property var position: position

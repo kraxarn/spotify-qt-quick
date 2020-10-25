@@ -58,7 +58,9 @@ ApplicationWindow {
 		id: toolBar
 	}
 
-	footer: Footer {}
+	footer: Footer {
+		id: footer
+	}
 
 	LogOutDialog {
 		id: dialogLogOut
