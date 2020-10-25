@@ -1,5 +1,5 @@
 
-function playbackChanged() {
+const playbackChanged = () => {
 	let playback = spotify.playback
 	let item = playback["item"]
 
@@ -21,7 +21,7 @@ function playbackChanged() {
 	footer.position.text = `${utils.formatTime(playback["progress_ms"])}/${utils.formatTime(item["duration"])}`
 }
 
-function playTrack(id) {
+const playTrack = id => {
 	let status = spotify.playTracksWithContext(`spotify:track:${id}`, root.currentContext)
 	if (status) {
 		console.log(status)
@@ -30,7 +30,7 @@ function playTrack(id) {
 	}
 }
 
-function loadTracks(tracks) {
+const loadTracks = tracks => {
 	trackListModel.clear()
 	tracks.forEach(track => trackListModel.append({
 		"id": track["id"],
@@ -41,7 +41,7 @@ function loadTracks(tracks) {
 	}))
 }
 
-function loadArtist(id) {
+const loadArtist = id => {
 	drawer.close()
 	artistDrawer.load(spotify.getArtist(id))
 }

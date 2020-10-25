@@ -1,13 +1,13 @@
 let results
 
-function search(query) {
+const search = query => {
 	rowSearch.enabled = false
 	results = spotify.search(query)
 	updateItems()
 	rowSearch.enabled = true
 }
 
-function getSelectedType() {
+const getSelectedType = () => {
 	let name = menuSearchSelectedType.icon.name
 	return name === "view-media-track"
 		? "tracks" : name === "view-media-artist"
@@ -15,7 +15,7 @@ function getSelectedType() {
 				? "albums" : "playlists"
 }
 
-function updateItems() {
+const updateItems = () => {
 	let items = results[getSelectedType()]
 
 	searchListModel.clear()
@@ -28,7 +28,7 @@ function updateItems() {
 	})
 }
 
-function clickedItem(id) {
+const clickedItem = id => {
 	switch (getSelectedType()) {
 		case "tracks":
 			spotify.playTrack(`spotify:track:${id}`)

@@ -1,8 +1,7 @@
-function getSettings() {
-	return Qt.createQmlObject("import com.kraxarn.settings 1.0; Settings{}", root)
-}
+const getSettings = () =>
+	Qt.createQmlObject("import com.kraxarn.settings 1.0; Settings{}", root)
 
-function reload() {
+const reload = () => {
 	let settings = getSettings()
 
 	// General
@@ -29,7 +28,7 @@ function reload() {
 	globalConfig.checked = spotify["global_config"]
 }
 
-function save() {
+const save = () => {
 	let settings = getSettings()
 
 	// General

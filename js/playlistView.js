@@ -1,4 +1,4 @@
-function loadPlaylists() {
+const loadPlaylists = () => {
 	spotify.playlists.forEach(playlist => {
 		listModel.append({
 			"id": playlist.id,
@@ -7,7 +7,7 @@ function loadPlaylists() {
 	})
 }
 
-function loadPlaylist(id) {
+const loadPlaylist = id => {
 	trackList.enabled = false
 
 	let tracks = spotify.getPlaylistTracks(id)
@@ -23,7 +23,7 @@ function loadPlaylist(id) {
 	root.currentContext = `spotify:playlist:${id}`
 }
 
-function clickedPlaylist(model) {
+const clickedPlaylist = model => {
 	drawer.close()
 	loadPlaylist(model.id)
 }

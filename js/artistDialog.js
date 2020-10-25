@@ -1,6 +1,6 @@
 let pageData = []
 
-function formatFollowers(count) {
+const formatFollowers = count => {
 	if (count > 1000000) {
 		return `${Math.round(count / 1000000)}M`
 	}
@@ -10,7 +10,7 @@ function formatFollowers(count) {
 	return count.toString()
 }
 
-function load(data) {
+const load = data => {
 	tabsInfo.currentIndex = 0
 	banner.source = data.image
 	artistName.text = data.name
@@ -25,11 +25,9 @@ function load(data) {
 	rootArtist.open()
 }
 
-function clickedItem(id) {
-	console.log(id)
-}
+const clickedItem = id => console.log(id)
 
-function tabChanged() {
+const tabChanged = () => {
 	artistListModel.clear()
 	pageData[tabsInfo.currentIndex].forEach(item => {
 		artistListModel.append({
