@@ -51,7 +51,7 @@ ApplicationWindow {
 	}
 
 	function icSrc(name) {
-		return "qrc:/res/ic/dark/%1.svg".arg(name)
+		return `qrc:/res/ic/dark/${name}.svg`
 	}
 
 	MainToolbar {
