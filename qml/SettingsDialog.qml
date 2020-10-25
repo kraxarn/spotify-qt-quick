@@ -25,7 +25,7 @@ Drawer {
 		anchors.fill: parent
 		StackLayout {
 			currentIndex: tabs.currentIndex
-			Layout.bottomMargin: drawerTabs.height
+			Layout.bottomMargin: drawer.drawerTabs.height
 			Layout.alignment: Qt.AlignHCenter
 			Layout.maximumWidth: parent.width - 64
 			Layout.topMargin: 32
