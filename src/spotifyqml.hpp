@@ -33,6 +33,8 @@ public:
 	Q_INVOKABLE QJsonObject search(const QString &query);
 	Q_INVOKABLE QJsonObject getArtist(const QString &id);
 	Q_INVOKABLE QJsonObject getArtistPages(const QString &id);
+	Q_INVOKABLE bool isSavedTrack(const QString &trackId);
+	Q_INVOKABLE QString setSavedTrack(const QString &trackId, bool saved);
 
 signals:
 	void playlistsChanged();

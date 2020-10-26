@@ -12,13 +12,20 @@ Menu {
 
 	enabled: !!trackId
 
+	onOpened: {
+		JS.getIsLiked()
+	}
+
 	function addToPlaylist(playlistId) {
 		JS.addToPlaylist(playlistId)
 	}
 
 	MenuItem {
+		id: like
 		text: "Like"
 		icon.name: "starred-symbolic"
+		enabled: false
+		onClicked: JS.setIsLiked()
 	}
 	MenuItem {
 		text: "Add to queue"

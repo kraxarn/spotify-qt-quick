@@ -150,3 +150,20 @@ QString SpotifyQml::addToPlaylist(const QString &playlistId, const QString &trac
 {
 	return spotify->addToPlaylist(playlistId, trackId);
 }
+
+bool SpotifyQml::isSavedTrack(const QString &trackId)
+{
+	for (auto &track : spotify->savedTracks())
+	{
+		if (track.id == trackId)
+			return true;
+	}
+	return false;
+}
+
+QString SpotifyQml::setSavedTrack(const QString &trackId, bool saved)
+{
+	return saved
+		? spotify->addSavedTrack(trackId)
+		: spotify->removeSavedTrack(trackId);
+}
