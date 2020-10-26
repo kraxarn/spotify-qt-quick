@@ -62,7 +62,8 @@ QJsonObject SpotifyQml::getPlayback()
 
 QJsonArray SpotifyQml::tracksToJson(QVector<spt::Track> &tracks)
 {
-	std::sort(tracks.begin(), tracks.end(), [](const spt::Track &t1, const spt::Track &t2) {
+	std::sort(tracks.begin(), tracks.end(), [](const spt::Track &t1, const spt::Track &t2)
+	{
 		return t1.artist < t2.artist;
 	});
 
