@@ -22,6 +22,7 @@ const load = data => {
 		pages.popular, pages.albums, pages.singles, pages.related
 	]
 
+	tabChanged()
 	rootArtist.open()
 }
 
