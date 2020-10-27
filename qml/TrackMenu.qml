@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-import "/js/trackMenu.js" as JS
+import "/js/TrackMenu.js" as JS
 
 Menu {
 	property string trackId

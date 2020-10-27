@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.0
 
-import "/js/settingsDialog.js" as JS
+import "/js/SettingsDialog.js" as JS
 
 Drawer {
 	id: root

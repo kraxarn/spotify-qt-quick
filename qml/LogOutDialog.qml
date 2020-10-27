@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-import "/js/logOutDialog.js" as JS
+import "/js/LogOutDialog.js" as JS
 
 Dialog {
 	title: "Are you sure?"
