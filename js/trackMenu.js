@@ -27,3 +27,9 @@ const setIsLiked = () =>
 
 const addToQueue = () =>
 	spotify.addToQueue(trackId)
+
+const openAlbum = () =>
+	root.loadTracks(spotify.getAlbumTracks(albumId), `spotify:album:${albumId}`)
+
+const viewArtist = () =>
+	root.loadArtist(artistId)

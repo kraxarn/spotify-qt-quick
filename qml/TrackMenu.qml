@@ -5,10 +5,10 @@ import QtQuick.Layouts 1.12
 import "/js/trackMenu.js" as JS
 
 Menu {
-	property var trackId
-	property var artistId
-	property var albumId
-	property var playlistId
+	property string trackId
+	property string artistId
+	property string albumId
+	property string playlistId
 
 	enabled: !!trackId
 
@@ -54,10 +54,12 @@ Menu {
 		text: "View artist"
 		icon.name: "view-media-artist"
 		enabled: !!artistId
+		onClicked: JS.viewArtist()
 	}
 	MenuItem {
 		text: "Open album"
 		icon.name: "view-media-album-cover"
-		enabled: !!albumId
+		enabled: albumId.length > 1
+		onClicked: JS.openAlbum()
 	}
 }
