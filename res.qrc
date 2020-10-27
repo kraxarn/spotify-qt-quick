@@ -19,13 +19,13 @@
         <file>qml/main.qml</file>
         <file>qml/setup.qml</file>
         <!-- JS -->
-        <file>js/artistDialog.js</file>
-        <file>js/logOutDialog.js</file>
+        <file>js/ArtistDialog.js</file>
+        <file>js/LogOutDialog.js</file>
         <file>js/main.js</file>
-        <file>js/playlistView.js</file>
-        <file>js/searchView.js</file>
-        <file>js/settingsDialog.js</file>
+        <file>js/PlaylistView.js</file>
+        <file>js/SearchView.js</file>
+        <file>js/SettingsDialog.js</file>
         <file>js/setup.js</file>
-        <file>js/trackMenu.js</file>
+        <file>js/TrackMenu.js</file>
     </qresource>
 </RCC>
