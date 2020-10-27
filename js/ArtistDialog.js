@@ -26,7 +26,21 @@ const load = data => {
 	rootArtist.open()
 }
 
-const clickedItem = id => console.log(id)
+const clickedItem = id => {
+	switch (tabsInfo.currentIndex) {
+		case 0:
+			spotify.playTrack(id)
+			break
+		case 1:
+		case 2:
+			root.loadTracks(spotify.getAlbumTracks(id), `spotify:album:${id}`)
+			rootArtist.close()
+			break
+		case 3:
+			root.loadArtist(id)
+			break
+	}
+}
 
 const tabChanged = () => {
 	artistListModel.clear()
