@@ -46,6 +46,7 @@ Menu {
 		text: "Remove from playlist"
 		icon.name: "list-remove"
 		enabled: !!playlistId
+		onClicked: JS.removeFromPlaylist()
 	}
 
 	MenuSeparator { }

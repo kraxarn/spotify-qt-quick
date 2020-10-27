@@ -12,6 +12,9 @@ const getPlaylists = () => {
 const addToPlaylist = playlistId =>
 	spotify.addToPlaylist(playlistId, `spotify:track:${trackId}`)
 
+const removeFromPlaylist = () =>
+	spotify.removeFromPlaylist(playlistId, `spotify:track:${trackId}`)
+
 const getIsLiked = () => {
 	const isSaved = spotify.isSavedTrack(trackId)
 	like.text = isSaved ? "Dislike" : "Like"

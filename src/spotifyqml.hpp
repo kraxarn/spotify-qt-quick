@@ -26,6 +26,7 @@ public:
 
 	// Playlists
 	Q_INVOKABLE QString addToPlaylist(const QString &playlistId, const QString &trackId);
+	Q_INVOKABLE QString removeFromPlaylist(const QString &playlistId, const QString &trackId);
 
 	// Other
 	Q_INVOKABLE void requestPlayback();

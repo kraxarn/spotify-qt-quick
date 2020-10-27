@@ -173,3 +173,8 @@ QString SpotifyQml::addToQueue(const QString &trackId)
 {
 	return spotify->addToQueue(trackId);
 }
+
+QString SpotifyQml::removeFromPlaylist(const QString &playlistId, const QString &trackId)
+{
+	return spotify->removeFromPlaylist(playlistId, trackId, 0);
+}
