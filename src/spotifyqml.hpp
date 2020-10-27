@@ -35,6 +35,7 @@ public:
 	Q_INVOKABLE QJsonObject getArtistPages(const QString &id);
 	Q_INVOKABLE bool isSavedTrack(const QString &trackId);
 	Q_INVOKABLE QString setSavedTrack(const QString &trackId, bool saved);
+	Q_INVOKABLE QString addToQueue(const QString &trackId);
 
 signals:
 	void playlistsChanged();

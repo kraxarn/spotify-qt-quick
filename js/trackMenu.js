@@ -21,3 +21,6 @@ const getIsLiked = () => {
 
 const setIsLiked = () =>
 	spotify.setSavedTrack(trackId, like.text === "Like")
+
+const addToQueue = () =>
+	spotify.addToQueue(trackId)

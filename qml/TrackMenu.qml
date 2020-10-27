@@ -30,6 +30,7 @@ Menu {
 	MenuItem {
 		text: "Add to queue"
 		icon.name: "media-playlist-append"
+		onClicked: JS.addToQueue()
 	}
 
 	MenuSeparator { }

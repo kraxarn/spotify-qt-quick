@@ -168,3 +168,8 @@ QString SpotifyQml::setSavedTrack(const QString &trackId, bool saved)
 		? spotify->addSavedTrack(trackId)
 		: spotify->removeSavedTrack(trackId);
 }
+
+QString SpotifyQml::addToQueue(const QString &trackId)
+{
+	return spotify->addToQueue(trackId);
+}
