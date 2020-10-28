@@ -13,3 +13,6 @@ const goPrevious = () =>
 
 const goNext = () =>
 	spotify.next()
+
+const seek = () =>
+	spotify.position = progress.value

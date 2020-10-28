@@ -11,6 +11,7 @@ Q_OBJECT
 	Q_PROPERTY(bool playing READ getPlaying WRITE setPlaying NOTIFY playingChanged)
 	Q_PROPERTY(bool shuffle READ getShuffle WRITE setShuffle)
 	Q_PROPERTY(bool repeat READ getRepeat WRITE setRepeat)
+	Q_PROPERTY(int position READ getPosition WRITE setPosition)
 
 	QML_ELEMENT
 
@@ -29,6 +30,9 @@ public:
 
 	bool getRepeat();
 	void setRepeat(bool repeat);
+
+	int getPosition();
+	void setPosition(int position);
 
 	// Get tracks
 	Q_INVOKABLE QJsonArray getPlaylistTracks(const QString &playlistId);

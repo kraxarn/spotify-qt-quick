@@ -39,6 +39,7 @@ Pane {
 				Layout.fillWidth: true
 				from: 0
 				value: 0
+				onMoved: JS.seek()
 			}
 			Label {
 				id: duration

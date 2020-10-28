@@ -221,3 +221,13 @@ QString SpotifyQml::next()
 {
 	return spotify->next();
 }
+
+int SpotifyQml::getPosition()
+{
+	return current.progressMs;
+}
+
+void SpotifyQml::setPosition(int position)
+{
+	spotify->seek(position);
+}
