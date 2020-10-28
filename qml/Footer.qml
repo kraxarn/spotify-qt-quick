@@ -3,6 +3,8 @@ import QtQuick.Controls 2.1
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 
+import "/js/Footer.js" as JS
+
 Pane {
 	readonly property var playPause: playPause
 	readonly property var progress: progress
@@ -58,6 +60,7 @@ Pane {
 				id: playPause
 				icon.name: "media-playback-start"
 				icon.source: icSrc("media-playback-start")
+				onClicked: JS.togglePlayPause()
 			}
 			ToolButton {
 				icon.name: "media-skip-forward"

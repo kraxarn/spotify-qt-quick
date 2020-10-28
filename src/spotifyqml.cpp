@@ -178,3 +178,16 @@ QString SpotifyQml::removeFromPlaylist(const QString &playlistId, const QString 
 {
 	return spotify->removeFromPlaylist(playlistId, trackId, 0);
 }
+
+bool SpotifyQml::getPlaying()
+{
+	return current.isPlaying;
+}
+
+void SpotifyQml::setPlaying(bool playing)
+{
+	if (playing)
+		spotify->resume();
+	else
+		spotify->pause();
+}

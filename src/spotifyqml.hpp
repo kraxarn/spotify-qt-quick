@@ -7,6 +7,7 @@ class SpotifyQml: public QObject
 Q_OBJECT
 	Q_PROPERTY(QJsonArray playlists READ getPlaylists NOTIFY playlistsChanged)
 	Q_PROPERTY(QJsonObject playback READ getPlayback NOTIFY playbackChanged)
+	Q_PROPERTY(bool playing READ getPlaying WRITE setPlaying NOTIFY playingChanged)
 	QML_ELEMENT
 
 public:
@@ -15,6 +16,9 @@ public:
 
 	QJsonArray getPlaylists();
 	QJsonObject getPlayback();
+
+	bool getPlaying();
+	void setPlaying(bool playing);
 
 	// Get tracks
 	Q_INVOKABLE QJsonArray getPlaylistTracks(const QString &playlistId);
@@ -41,6 +45,7 @@ public:
 signals:
 	void playlistsChanged();
 	void playbackChanged();
+	void playingChanged();
 
 private:
 	spt::Spotify *spotify = nullptr;
