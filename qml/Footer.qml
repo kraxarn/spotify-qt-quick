@@ -63,6 +63,7 @@ Pane {
 			ToolButton {
 				icon.name: "media-skip-backward"
 				icon.source: icSrc("media-skip-backward")
+				onClicked: JS.goPrevious()
 			}
 			ToolButton {
 				id: playPause
@@ -73,6 +74,7 @@ Pane {
 			ToolButton {
 				icon.name: "media-skip-forward"
 				icon.source: icSrc("media-skip-forward")
+				onClicked: JS.goNext()
 			}
 
 			ToolSeparator { }

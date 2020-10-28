@@ -7,3 +7,9 @@ const toggleShuffle = () =>
 
 const toggleRepeat = () =>
 	spotify.repeat = repeat.checked
+
+const goPrevious = () =>
+	spotify.previous()
+
+const goNext = () =>
+	spotify.next()

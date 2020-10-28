@@ -42,6 +42,10 @@ public:
 	Q_INVOKABLE QString addToPlaylist(const QString &playlistId, const QString &trackId);
 	Q_INVOKABLE QString removeFromPlaylist(const QString &playlistId, const QString &trackId);
 
+	// Playback control
+	Q_INVOKABLE QString previous();
+	Q_INVOKABLE QString next();
+
 	// Other
 	Q_INVOKABLE void requestPlayback();
 	Q_INVOKABLE QString systemInfo();

@@ -211,3 +211,13 @@ void SpotifyQml::setRepeat(bool repeat)
 {
 	spotify->setRepeat(repeat ? "context" : "off");
 }
+
+QString SpotifyQml::previous()
+{
+	return spotify->previous();
+}
+
+QString SpotifyQml::next()
+{
+	return spotify->next();
+}
