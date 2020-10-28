@@ -37,6 +37,10 @@ ApplicationWindow {
 		JS.loadArtist(id)
 	}
 
+	function playTrack(index) {
+		JS.playTrack(index)
+	}
+
 	Utils {
 		id: utils
 	}

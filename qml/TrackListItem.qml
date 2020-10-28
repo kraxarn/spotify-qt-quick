@@ -10,7 +10,7 @@ Button {
 
 	property var itemModel
 
-	onClicked: JS.playTrack(model.id)
+	onClicked: root.playTrack(itemModel.index)
 	readonly property var foregroundColor: currentTrackId === itemModel.id
 		? Material.accent : undefined
 
