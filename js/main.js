@@ -18,7 +18,8 @@ const playbackChanged = () => {
 	footer.playPause.icon.name = `media-playback-${playback["is_playing"] ? "pause" : "start"}`
 	footer.progress.to = item["duration"]
 	footer.progress.value = playback["progress_ms"]
-	footer.position.text = `${utils.formatTime(playback["progress_ms"])}/${utils.formatTime(item["duration"])}`
+	footer.position.text = utils.formatTime(playback["progress_ms"])
+	footer.duration.text = utils.formatTime(item["duration"])
 }
 
 const playTrack = id => {

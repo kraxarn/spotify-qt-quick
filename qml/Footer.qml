@@ -7,6 +7,8 @@ Pane {
 	readonly property var playPause: playPause
 	readonly property var progress: progress
 	readonly property var position: position
+	readonly property var duration: duration
+
 	Material.background: Material.primary
 	Material.elevation: 12
 	anchors {
@@ -22,6 +24,10 @@ Pane {
 		}
 
 		RowLayout {
+			Label {
+				id: position
+				text: "0:00"
+			}
 			Slider {
 				id: progress
 				Layout.fillWidth: true
@@ -29,8 +35,8 @@ Pane {
 				value: 0
 			}
 			Label {
-				id: position
-				text: "0:00/0:00"
+				id: duration
+				text: "0:00"
 			}
 		}
 		RowLayout {
