@@ -16,6 +16,7 @@ Pane {
 
 	Material.background: Material.primary
 	Material.elevation: 12
+
 	anchors {
 		left: parent.left
 		right: parent.right
@@ -44,6 +45,7 @@ Pane {
 				text: "0:00"
 			}
 		}
+
 		RowLayout {
 			Item {
 				Layout.fillWidth: true
@@ -55,8 +57,9 @@ Pane {
 				checkable: true
 				onClicked: JS.toggleShuffle()
 			}
-			ToolSeparator {
-			}
+
+			ToolSeparator { }
+
 			ToolButton {
 				icon.name: "media-skip-backward"
 				icon.source: icSrc("media-skip-backward")
@@ -71,8 +74,9 @@ Pane {
 				icon.name: "media-skip-forward"
 				icon.source: icSrc("media-skip-forward")
 			}
-			ToolSeparator {
-			}
+
+			ToolSeparator { }
+
 			ToolButton {
 				id: repeat
 				icon.name: "media-playlist-repeat"
