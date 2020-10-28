@@ -191,3 +191,23 @@ void SpotifyQml::setPlaying(bool playing)
 	else
 		spotify->pause();
 }
+
+bool SpotifyQml::getShuffle()
+{
+	return current.shuffle;
+}
+
+void SpotifyQml::setShuffle(bool shuffle)
+{
+	spotify->setShuffle(shuffle);
+}
+
+bool SpotifyQml::getRepeat()
+{
+	return current.repeat != "off";
+}
+
+void SpotifyQml::setRepeat(bool repeat)
+{
+	spotify->setRepeat(repeat ? "context" : "off");
+}

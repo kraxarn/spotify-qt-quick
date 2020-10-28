@@ -6,10 +6,13 @@ import QtQuick.Layouts 1.12
 import "/js/Footer.js" as JS
 
 Pane {
-	readonly property var playPause: playPause
 	readonly property var progress: progress
 	readonly property var position: position
 	readonly property var duration: duration
+
+	readonly property var playPause: playPause
+	readonly property var shuffle: shuffle
+	readonly property var repeat: repeat
 
 	Material.background: Material.primary
 	Material.elevation: 12
@@ -46,9 +49,11 @@ Pane {
 				Layout.fillWidth: true
 			}
 			ToolButton {
+				id: shuffle
 				icon.name: "media-playlist-shuffle"
 				icon.source: icSrc("media-playlist-shuffle")
 				checkable: true
+				onClicked: JS.toggleShuffle()
 			}
 			ToolSeparator {
 			}
@@ -69,9 +74,11 @@ Pane {
 			ToolSeparator {
 			}
 			ToolButton {
+				id: repeat
 				icon.name: "media-playlist-repeat"
 				icon.source: icSrc("media-playlist-repeat")
 				checkable: true
+				onClicked: JS.toggleRepeat()
 			}
 			Item {
 				Layout.fillWidth: true

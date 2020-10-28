@@ -20,6 +20,9 @@ const playbackChanged = () => {
 	footer.progress.value = playback["progress_ms"]
 	footer.position.text = utils.formatTime(playback["progress_ms"])
 	footer.duration.text = utils.formatTime(item["duration"])
+
+	footer.shuffle.checked = playback["shuffle"]
+	footer.repeat.checked = playback["repeat"] !== "off"
 }
 
 const playTrack = id => {
