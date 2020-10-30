@@ -231,3 +231,21 @@ void SpotifyQml::setPosition(int position)
 {
 	spotify->seek(position);
 }
+
+QJsonArray SpotifyQml::getRecentlyPlayed() const
+{
+	auto tracks = spotify->recentlyPlayed();
+	return tracksToJson(tracks);
+}
+
+QJsonArray SpotifyQml::getSavedTracks() const
+{
+	auto tracks = spotify->savedTracks();
+	return tracksToJson(tracks);
+}
+
+QJsonArray SpotifyQml::getTopTracks() const
+{
+	auto tracks = spotify->topTracks();
+	return tracksToJson(tracks);
+}

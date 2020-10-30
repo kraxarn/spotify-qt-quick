@@ -13,6 +13,10 @@ Q_OBJECT
 	Q_PROPERTY(bool repeat READ getRepeat WRITE setRepeat)
 	Q_PROPERTY(int position READ getPosition WRITE setPosition)
 
+	Q_PROPERTY(QJsonArray recentlyPlayed READ getRecentlyPlayed)
+	Q_PROPERTY(QJsonArray savedTracks READ getSavedTracks)
+	Q_PROPERTY(QJsonArray topTracks READ getTopTracks)
+
 	QML_ELEMENT
 
 public:
@@ -33,6 +37,10 @@ public:
 
 	int getPosition();
 	void setPosition(int position);
+
+	QJsonArray getRecentlyPlayed() const;
+	QJsonArray getSavedTracks() const;
+	QJsonArray getTopTracks() const;
 
 	// Get tracks
 	Q_INVOKABLE QJsonArray getPlaylistTracks(const QString &playlistId);

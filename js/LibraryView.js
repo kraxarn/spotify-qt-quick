@@ -3,9 +3,8 @@ const load = () => {
 
 	const items = [
 		{id: "recently_played", name: "Recently Played", expandable: false},
-		{id: "liked", name: "Liked", expandable: false},
-		{id: "tracks", name: "Tracks", expandable: false},
-		{id: "new_releases", name: "New Releases", expandable: false},
+		{id: "saved_tracks", name: "Liked", expandable: false},
+		{id: "top_tracks", name: "Tracks", expandable: false},
 		{id: "albums", name: "Albums", expandable: true},
 		{id: "artists", name: "Artists", expandable: true},
 		{id: "following", name: "Following", expandable: true}
@@ -27,5 +26,17 @@ const itemClicked = item => {
 		item.subList.visible = !item.subList.visible
 	}
 
-	console.log("clicked:", item)
+	switch (item.itemModel.id) {
+		case "recently_played":
+			root.loadTracks(spotify.recentlyPlayed, null)
+			break
+
+		case "saved_tracks":
+			root.loadTracks(spotify.savedTracks, null)
+			break
+
+		case "top_tracks":
+			root.loadTracks(spotify.topTracks, null)
+			break
+	}
 }
