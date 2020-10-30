@@ -19,7 +19,7 @@ Drawer {
 		}
 	}
 
-	onOpened: () => JS.reload()
+	onOpened: JS.reload()
 
 	ColumnLayout {
 		anchors.fill: parent
