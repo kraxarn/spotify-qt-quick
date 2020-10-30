@@ -14,6 +14,10 @@ ListView {
 		JS.itemClicked(item)
 	}
 
+	function subListItemClicked(parentId, id) {
+		JS.subListItemClicked(parentId, id)
+	}
+
 	Component.onCompleted: JS.load()
 
 	Component {

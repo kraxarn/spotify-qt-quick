@@ -16,6 +16,9 @@ Q_OBJECT
 	Q_PROPERTY(QJsonArray recentlyPlayed READ getRecentlyPlayed)
 	Q_PROPERTY(QJsonArray savedTracks READ getSavedTracks)
 	Q_PROPERTY(QJsonArray topTracks READ getTopTracks)
+	Q_PROPERTY(QJsonArray savedAlbums READ getSavedAlbums)
+	Q_PROPERTY(QJsonArray topArtists READ getTopArtists)
+	Q_PROPERTY(QJsonArray followedArtists READ getFollowedArtists)
 
 	QML_ELEMENT
 
@@ -41,6 +44,9 @@ public:
 	QJsonArray getRecentlyPlayed() const;
 	QJsonArray getSavedTracks() const;
 	QJsonArray getTopTracks() const;
+	QJsonArray getSavedAlbums() const;
+	QJsonArray getTopArtists() const;
+	QJsonArray getFollowedArtists() const;
 
 	// Get tracks
 	Q_INVOKABLE QJsonArray getPlaylistTracks(const QString &playlistId);

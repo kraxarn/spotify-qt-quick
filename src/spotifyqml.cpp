@@ -249,3 +249,27 @@ QJsonArray SpotifyQml::getTopTracks() const
 	auto tracks = spotify->topTracks();
 	return tracksToJson(tracks);
 }
+
+QJsonArray SpotifyQml::getSavedAlbums() const
+{
+	QJsonArray albums;
+	for (auto &album : spotify->savedAlbums())
+		albums.append(album.toJson());
+	return albums;
+}
+
+QJsonArray SpotifyQml::getTopArtists() const
+{
+	QJsonArray artists;
+	for (auto &artist : spotify->topArtists())
+		artists.append(artist.toJson());
+	return artists;
+}
+
+QJsonArray SpotifyQml::getFollowedArtists() const
+{
+	QJsonArray artists;
+	for (auto &artist : spotify->followedArtists())
+		artists.append(artist.toJson());
+	return artists;
+}

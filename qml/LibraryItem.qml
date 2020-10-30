@@ -11,6 +11,7 @@ ColumnLayout {
 
 	readonly property var expandButton: expandButton
 	readonly property var subList: subList
+	readonly property var subListModel: subListModel
 
 	readonly property var foregroundColor: expandButton.icon.name === "collapse" ? Material.accent : undefined
 
@@ -41,7 +42,6 @@ ColumnLayout {
 			icon.name: "expand"
 			flat: true
 			visible: itemModel.expandable
-			Material.foreground: foregroundColor
 		}
 	}
 
@@ -49,10 +49,30 @@ ColumnLayout {
 		id: subList
 		visible: false
 		Layout.fillWidth: true
+		Layout.preferredHeight: listItemHeight * subListModel.count
 
-		Label {
+		BusyIndicator {
+			Layout.fillWidth: true
+			visible: subListModel.count <= 0
+		}
+
+		ListView {
+			id: subListView
 			Layout.leftMargin: 16
-			text: "items"
+			Layout.fillWidth: true
+			Layout.fillHeight: true
+
+			model: ListModel {
+				id: subListModel
+			}
+			delegate: Component {
+				Button {
+					flat: true
+					text: model.text
+					width: subList.width - 32
+					onClicked: libraryList.subListItemClicked(model.parentId, model.id)
+				}
+			}
 		}
 	}
 }
