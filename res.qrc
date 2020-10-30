@@ -4,6 +4,7 @@
         <!-- QML -->
         <file>qml/ArtistDialog.qml</file>
         <file>qml/Footer.qml</file>
+        <file>qml/LibraryItem.qml</file>
         <file>qml/LibraryView.qml</file>
         <file>qml/LogOutDialog.qml</file>
         <file>qml/LoggedOutDialog.qml</file>
@@ -21,6 +22,7 @@
         <!-- JS -->
         <file>js/ArtistDialog.js</file>
         <file>js/Footer.js</file>
+        <file>js/LibraryView.js</file>
         <file>js/LogOutDialog.js</file>
         <file>js/PlaylistView.js</file>
         <file>js/SearchView.js</file>
