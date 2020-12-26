@@ -98,7 +98,7 @@ void SpotifyQml::requestPlayback()
 
 QString SpotifyQml::systemInfo()
 {
-	return SystemInfoDialog::systemInfo(current);
+	return SystemInfoView::systemInfo(current);
 }
 
 QJsonObject SpotifyQml::search(const QString &query)
