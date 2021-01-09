@@ -89,6 +89,7 @@ private:
 	void refresh();
 	void refreshed(const spt::Playback &playback);
 	static QJsonArray tracksToJson(QVector<spt::Track> &tracks);
+	void requestCurrentPlayback();
 };
 
 

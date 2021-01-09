@@ -3,12 +3,7 @@
 SpotifyQml::SpotifyQml(QObject *parent)
 	: QObject(parent)
 {
-	spotify = new spt::Spotify(settings);
-
-	spt::Spotify::connect(spotify, &spt::Spotify::gotPlayback, [this](const spt::Playback &playback)
-	{
-		refreshed(playback);
-	});
+	spotify = new spt::Spotify(settings.getSettings());
 
 	auto timer = new QTimer(this);
 	QTimer::connect(timer, &QTimer::timeout, this, &SpotifyQml::refresh);
@@ -16,15 +11,23 @@ SpotifyQml::SpotifyQml(QObject *parent)
 	timer->start(1000);
 }
 
+void SpotifyQml::requestCurrentPlayback()
+{
+	spotify->currentPlayback([this](const spt::Playback &playback)
+	{
+		refreshed(playback);
+	});
+}
+
 void SpotifyQml::refresh()
 {
 	// TODO: For now this is a copy from MainWindow.cpp
 
 	if (refreshCount < 0
-		|| ++refreshCount >= settings.general.refreshInterval
+		|| ++refreshCount >= settings.getSettings().general.refresh_interval
 		|| current.progressMs + 1000 > current.item.duration)
 	{
-		spotify->requestCurrentPlayback();
+		requestCurrentPlayback();
 		refreshCount = 0;
 		return;
 	}
@@ -92,7 +95,7 @@ QString SpotifyQml::playTrack(const QString &track)
 
 void SpotifyQml::requestPlayback()
 {
-	spotify->requestCurrentPlayback();
+	requestCurrentPlayback();
 	refreshCount = 0;
 }
 
