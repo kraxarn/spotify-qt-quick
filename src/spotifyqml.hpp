@@ -81,7 +81,7 @@ signals:
 
 private:
 	spt::Spotify *spotify = nullptr;
-	Settings settings;
+	SettingsQml settings;
 	spt::Playback current;
 
 	int refreshCount = -1;

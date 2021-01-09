@@ -11,8 +11,9 @@
 
 #define GET_ENGINE() (dynamic_cast<QQmlApplicationEngine *>(appEngine))
 
-QmlManager::QmlManager(Settings &settings)
-	: appEngine(new QQmlApplicationEngine(this)), settings(settings)
+QmlManager::QmlManager(lib::settings &settings)
+	: appEngine(new QQmlApplicationEngine(this)),
+	settings(settings)
 {
 	defineTypes();
 
@@ -63,8 +64,10 @@ void QmlManager::main()
 {
 	auto engine = GET_ENGINE();
 
-	QQuickStyle::setStyle(QQuickStyle::availableStyles().contains(settings.general.style)
-		? settings.general.style
+	auto settingsStyle = QString::fromStdString(settings.general.style);
+	QQuickStyle::setStyle(QQuickStyle::availableStyles()
+		.contains(settingsStyle)
+		? settingsStyle
 		: "Material");
 
 	QQmlApplicationEngine::connect(engine, &QQmlApplicationEngine::objectCreated, this,

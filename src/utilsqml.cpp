@@ -35,16 +35,17 @@ QJsonObject UtilsQml::extractUrlQuery(const QUrl &url)
 	return obj;
 }
 
-QJsonObject UtilsQml::sptAuth(const QString &code, const QString &clientId, const QString &clientSecret)
+QJsonObject UtilsQml::sptAuth(const QString &code, const QString &clientId,
+	const QString &clientSecret)
 {
-	Settings settings;
-	auto status = spt::Auth(settings).auth(code, REDIRECT_URL, clientId, clientSecret);
-	return QJsonObject(
-		{
-			QPair<QString, bool>("success", status.isEmpty()),
-			QPair<QString, QString>("message", status)
-		}
-	);
+	SettingsQml settings;
+	auto status = spt::Auth(settings.getSettings())
+		.auth(code, REDIRECT_URL, clientId, clientSecret);
+
+	return QJsonObject({
+		QPair<QString, bool>("success", status.isEmpty()),
+		QPair<QString, QString>("message", status)
+	});
 }
 
 QStringList UtilsQml::availableStyles()

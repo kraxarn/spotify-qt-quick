@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../src/settings.hpp"
+#include "lib/settings.hpp"
 
 #include <QObject>
 
@@ -10,7 +10,7 @@ class QmlManager: QObject
 
 
 public:
-	explicit QmlManager(Settings &settings);
+	explicit QmlManager(lib::settings &settings);
 
 	void load(const QString &url);
 
@@ -19,7 +19,7 @@ public:
 
 private:
 	QObject *appEngine;
-	Settings &settings;
+	lib::settings &settings;
 
 	void defineTypes();
 };
