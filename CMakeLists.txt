@@ -15,11 +15,11 @@ target_link_libraries(spotify-qt-quick PRIVATE
 		Qt5::Core
 		Qt5::Quick
 		Qt5::QuickControls2
-		# TODO: Some stuff like dialogs still depend on Widgets (v3.4)
+		# TODO: Some stuff like dialogs still depend on Widgets
 		Qt5::Widgets
-		# TODO: D-Bus is still required (v3.1)
+		# TODO: D-Bus is still required
 		Qt5::DBus
-		# TODO: WebEngine doesn't actually work on mobile (v3.1)
+		# TODO: WebEngine doesn't actually work on mobile
 		Qt5::WebEngine)
 
 find_package(Git QUIET)
