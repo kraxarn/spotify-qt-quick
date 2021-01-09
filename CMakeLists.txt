@@ -34,3 +34,6 @@ elseif(NOT GIT_TAG)
 endif()
 
 target_compile_definitions(spotify-qt-quick PRIVATE LIB_VERSION="${GIT_TAG}")
+
+# spotify-qt-lib
+target_link_libraries(spotify-qt-quick PRIVATE spotify-qt-lib)
