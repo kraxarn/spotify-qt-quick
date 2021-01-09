@@ -29,9 +29,7 @@ QJsonObject UtilsQml::extractUrlQuery(const QUrl &url)
 {
 	QJsonObject obj;
 	for (auto &item : QUrlQuery(url).queryItems())
-	{
 		obj[item.first] = item.second;
-	}
 	return obj;
 }
 

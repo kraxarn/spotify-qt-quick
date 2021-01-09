@@ -57,7 +57,8 @@ bool QmlManager::setup()
 	QCoreApplication::exec();
 	settings.load();
 
-	return settings.account.accessToken.isEmpty() || settings.account.refreshToken.isEmpty();
+	return settings.account.access_token.empty()
+		|| settings.account.refresh_token.empty();
 }
 
 void QmlManager::main()
