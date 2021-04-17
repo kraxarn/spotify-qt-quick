@@ -1,27 +1,35 @@
-project(spotify-qt-quick)
+cmake_minimum_required(VERSION 3.5)
+project(spotify-qt-quick LANGUAGES CXX)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt5 COMPONENTS Quick QuickControls2 Widgets DBus WebEngine REQUIRED)
+# C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories("..")
+# Find Qt
+# TODO: Not properly updated for Qt 6 yet
+find_package(Qt5 COMPONENTS Quick QuickControls2 Widgets WebEngine REQUIRED)
 
+# Glob source files
 file(GLOB QML_SRC "${PROJECT_SOURCE_DIR}/src/*.[hc]pp")
-add_library(spotify-qt-quick STATIC ${QML_SRC})
 
-target_link_libraries(spotify-qt-quick PRIVATE
-		Qt5::Core
-		Qt5::Quick
-		Qt5::QuickControls2
-		# TODO: Some stuff like dialogs still depend on Widgets
-		Qt5::Widgets
-		# TODO: D-Bus is still required
-		Qt5::DBus
-		# TODO: WebEngine doesn't actually work on mobile
-		Qt5::WebEngine)
+# Add all source files to main executable
+if (ANDROID)
+	add_library(spotify-qt-quick SHARED ${QML_SRC} res.qrc)
+else ()
+	add_executable(spotify-qt-quick ${QML_SRC} res.qrc)
+endif ()
 
+# Headers are in src/
+target_include_directories(spotify-qt-quick PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+
+# Get version from Git
+# TODO: Add header with version, like spotify-qt
 find_package(Git QUIET)
 if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 	execute_process(COMMAND ${GIT_EXECUTABLE} describe --abbrev=0 --tags
@@ -32,8 +40,23 @@ elseif(NOT GIT_TAG)
 	message(STATUS "warning: git or source code dir not found")
 	set(GIT_TAG "v0.0")
 endif()
-
 target_compile_definitions(spotify-qt-quick PRIVATE LIB_VERSION="${GIT_TAG}")
 
+# Don't show console window under windows
+if (WIN32)
+	target_link_options(spotify-qt PRIVATE -mwindows)
+endif ()
+
+# Link Qt
+target_link_libraries(spotify-qt-quick PRIVATE
+		Qt5::Core
+		Qt5::Quick
+		Qt5::QuickControls2
+		# TODO: Some stuff like dialogs still depend on Widgets
+		Qt5::Widgets
+		# TODO: WebEngine doesn't actually work on mobile
+		Qt5::WebEngine)
+
 # spotify-qt-lib
+add_subdirectory(core/lib)
 target_link_libraries(spotify-qt-quick PRIVATE spotify-qt-lib)
