@@ -1,15 +1,26 @@
+/**
+ * @type {Array<Object>}
+ */
 let pageData = []
 
+/**
+ * @param {number} count
+ * @returns {string}
+ */
 const formatFollowers = count => {
-	if (count > 1000000) {
-		return `${Math.round(count / 1000000)}M`
+	if (count > 1_000_000) {
+		return `${Math.round(count / 1_000_000)}M`
 	}
-	if (count > 1000) {
-		return `${Math.round(count / 1000)}k`
+	if (count > 1_000) {
+		return `${Math.round(count / 1_000)}k`
 	}
 	return count.toString()
 }
 
+
+/**
+ * @param {Artist} data
+ */
 const load = data => {
 	tabsInfo.currentIndex = 0
 	banner.source = data.image
@@ -26,6 +37,10 @@ const load = data => {
 	rootArtist.open()
 }
 
+/**
+ * @param {string} id
+ * @returns void
+ */
 const clickedItem = id => {
 	switch (tabsInfo.currentIndex) {
 		case 0:
@@ -42,6 +57,9 @@ const clickedItem = id => {
 	}
 }
 
+/**
+ * @returns void
+ */
 const tabChanged = () => {
 	artistListModel.clear()
 	pageData[tabsInfo.currentIndex].forEach(item => {

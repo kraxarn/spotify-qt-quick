@@ -25,6 +25,9 @@ const playbackChanged = () => {
 	footer.repeat.checked = playback["repeat"] !== "off"
 }
 
+/**
+ * @param {number} index
+ */
 const playTrack = index => {
 	let status = spotify.playTracksWithContext(index, root.currentContext)
 	if (status) {
@@ -34,19 +37,25 @@ const playTrack = index => {
 	}
 }
 
+/**
+ * @param {Array<Track>} tracks
+ */
 const loadTracks = tracks => {
 	trackListModel.clear()
 	let i = 0
 	tracks.forEach(track => trackListModel.append({
-		"id": track["id"],
-		"artist": track["artist"],
-		"track": track["name"],
-		"artistId": track["artist_id"],
-		"albumId": track["album_id"],
+		"id": track.id,
+		"artist": track.artist,
+		"track": track.name,
+		"artistId": track.artist_id,
+		"albumId": track.album_id,
 		"index": i++
 	}))
 }
 
+/**
+ * @param {string} id
+ */
 const loadArtist = id => {
 	drawer.close()
 	artistDrawer.load(spotify.getArtist(id))
