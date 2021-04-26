@@ -31,18 +31,14 @@ endif ()
 target_include_directories(spotify-qt-quick PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 # Get version from Git
-# TODO: Add header with version, like spotify-qt
 find_package(Git QUIET)
 if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
-	execute_process(COMMAND ${GIT_EXECUTABLE} describe --abbrev=0 --tags
+	execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
 			WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-			OUTPUT_VARIABLE GIT_TAG
+			OUTPUT_VARIABLE GIT_COMMIT
 			OUTPUT_STRIP_TRAILING_WHITESPACE)
-elseif(NOT GIT_TAG)
-	message(STATUS "warning: git or source code dir not found")
-	set(GIT_TAG "v0.0")
+	target_compile_definitions(spotify-qt-quick PRIVATE GIT_COMMIT="${GIT_COMMIT}")
 endif()
-target_compile_definitions(spotify-qt-quick PRIVATE LIB_VERSION="${GIT_TAG}")
 
 # Don't show console window under windows
 if (WIN32)
