@@ -16,13 +16,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Quick QuickControls2 Widgets WebEngine REQUIRED)
 
 # Glob source files
-file(GLOB QML_SRC "${PROJECT_SOURCE_DIR}/src/*.[hc]pp")
+file(GLOB MAIN_SRC "${PROJECT_SOURCE_DIR}/src/*.[hc]pp")
+file(GLOB SUB_SRC "${PROJECT_SOURCE_DIR}/src/*/*.[hc]pp")
+set(SOURCES ${MAIN_SRC} ${SUB_SRC})
 
 # Add all source files to main executable
 if (ANDROID)
-	add_library(spotify-qt-quick SHARED ${QML_SRC} res.qrc)
+	add_library(spotify-qt-quick SHARED ${SOURCES} res.qrc)
 else ()
-	add_executable(spotify-qt-quick ${QML_SRC} res.qrc)
+	add_executable(spotify-qt-quick ${SOURCES} res.qrc)
 endif ()
 
 # Headers are in src/
