@@ -1,16 +1,5 @@
 #include "qmlmanager.hpp"
 
-#include "settingsqml.hpp"
-#include "spotifyqml.hpp"
-#include "utilsqml.hpp"
-
-#include <QCoreApplication>
-#include <QQmlApplicationEngine>
-#include <QQuickStyle>
-#include <QtWebEngine>
-
-#define GET_ENGINE() (dynamic_cast<QQmlApplicationEngine *>(appEngine))
-
 QmlManager::QmlManager(lib::settings &settings)
 	: appEngine(new QQmlApplicationEngine(this)),
 	settings(settings)
@@ -23,14 +12,15 @@ QmlManager::QmlManager(lib::settings &settings)
 
 void QmlManager::defineTypes()
 {
-	auto engine = GET_ENGINE();
-
-	// spotify-qt
-	engine->rootContext()->setContextProperty("AppVersion", QCoreApplication::applicationVersion());
 	// spotify-qt-quick
-	engine->rootContext()->setContextProperty("LibVersion", LIB_VERSION);
+	appEngine->rootContext()->setContextProperty("AppVersion",
+		QCoreApplication::applicationVersion());
+
+	// spotify-qt-lib
+	appEngine->rootContext()->setContextProperty("LibVersion", LIB_VERSION);
+
 	// qt
-	engine->rootContext()->setContextProperty("QtVersion", QString("%1.%2")
+	appEngine->rootContext()->setContextProperty("QtVersion", QString("%1.%2")
 		.arg(QT_VERSION_MAJOR).arg(QT_VERSION_MINOR));
 
 	qmlRegisterType<SpotifyQml>("com.kraxarn.spotify",
@@ -48,10 +38,10 @@ void QmlManager::defineTypes()
 
 void QmlManager::load(const QString &url)
 {
-	GET_ENGINE()->load(QUrl(url));
+	appEngine->load(QUrl(url));
 }
 
-bool QmlManager::setup()
+auto QmlManager::setup() -> bool
 {
 	load("qrc:/qml/setup.qml");
 	QCoreApplication::exec();
@@ -63,20 +53,21 @@ bool QmlManager::setup()
 
 void QmlManager::main()
 {
-	auto engine = GET_ENGINE();
-
 	auto settingsStyle = QString::fromStdString(settings.general.style);
-	QQuickStyle::setStyle(QQuickStyle::availableStyles()
-		.contains(settingsStyle)
+	QQuickStyle::setStyle(QQuickStyle::availableStyles().contains(settingsStyle)
 		? settingsStyle
 		: "Material");
 
-	QQmlApplicationEngine::connect(engine, &QQmlApplicationEngine::objectCreated, this,
-		[](QObject *obj, const QUrl &url)
+	QQmlApplicationEngine::connect(appEngine, &QQmlApplicationEngine::objectCreated,
+		this, [](QObject *obj, const QUrl &url)
 		{
 			if (obj == nullptr)
+			{
+				lib::log::error("Failed to load: {}",
+					url.toString().toStdString());
 				QCoreApplication::quit();
+			}
 		}, Qt::QueuedConnection);
 
-	engine->load(QUrl("qrc:/qml/main.qml"));
+	appEngine->load(QUrl("qrc:/qml/main.qml"));
 }
