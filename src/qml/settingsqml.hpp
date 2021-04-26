@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../src/lib/qtpaths.hpp"
+#include "lib/qtquickpaths.hpp"
 #include "lib/settings.hpp"
 
 #include <QObject>
@@ -15,20 +15,19 @@ Q_OBJECT
 	QML_ELEMENT
 
 public:
-	explicit SettingsQml(QObject *parent = nullptr);
-	~SettingsQml() override;
+	explicit SettingsQml(lib::settings &settings, QObject *parent);
 
 	Q_INVOKABLE void logOut(const QString &mode);
 
-	QJsonObject getAccount();
+	auto getAccount() -> QJsonObject;
 
-	QJsonObject getGeneral();
+	auto getGeneral() -> QJsonObject;
 	void setGeneral(const QJsonObject &json);
 
-	QJsonObject getSpotify();
+	auto getSpotify() -> QJsonObject;
 	void setSpotify(const QJsonObject &json);
 
-	lib::settings &getSettings();
+	auto getSettings() -> lib::settings &;
 
 signals:
 	void accountChanged();
@@ -36,10 +35,9 @@ signals:
 	void spotifyChanged();
 
 private:
-	lib::settings *settings = nullptr;
-	QtPaths *paths = nullptr;
+	lib::settings &settings;
 
 	void update(const QString &section, const QJsonObject &value);
-	QJsonDocument toJsonDocument();
+	auto toJsonDocument() -> QJsonDocument;
 	void fromJsonDocument(const QJsonDocument &json);
 };
