@@ -21,7 +21,7 @@ void QmlManager::defineTypes()
 
 	// qt
 	appEngine->rootContext()->setContextProperty("QtVersion", QString("%1.%2")
-		.arg(QT_VERSION_MAJOR).arg(QT_VERSION_MINOR));
+		.arg(QT_VERSION_MAJOR, QT_VERSION_MINOR));
 
 	qmlRegisterType<SpotifyQml>("com.kraxarn.spotify",
 		1, 0,

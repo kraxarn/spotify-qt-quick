@@ -34,11 +34,11 @@ target_include_directories(spotify-qt-quick PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}
 find_package(Git QUIET)
 if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 	execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
-			WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-			OUTPUT_VARIABLE GIT_COMMIT
-			OUTPUT_STRIP_TRAILING_WHITESPACE)
+		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+		OUTPUT_VARIABLE GIT_COMMIT
+		OUTPUT_STRIP_TRAILING_WHITESPACE)
 	target_compile_definitions(spotify-qt-quick PRIVATE GIT_COMMIT="${GIT_COMMIT}")
-endif()
+endif ()
 
 # Don't show console window under windows
 if (WIN32)
@@ -47,13 +47,13 @@ endif ()
 
 # Link Qt
 target_link_libraries(spotify-qt-quick PRIVATE
-		Qt5::Core
-		Qt5::Quick
-		Qt5::QuickControls2
-		# TODO: Some stuff like dialogs still depend on Widgets
-		Qt5::Widgets
-		# TODO: WebEngine doesn't actually work on mobile
-		Qt5::WebEngine)
+	Qt5::Core
+	Qt5::Quick
+	Qt5::QuickControls2
+	# TODO: Some stuff like dialogs still depend on Widgets
+	Qt5::Widgets
+	# TODO: WebEngine doesn't actually work on mobile
+	Qt5::WebEngine)
 
 # spotify-qt-lib
 add_subdirectory(core/lib)

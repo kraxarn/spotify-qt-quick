@@ -36,7 +36,7 @@ void SettingsQml::update(const QString &section, const QJsonObject &value)
 	auto json = toJsonDocument().object();
 	json[section] = value;
 	fromJsonDocument(QJsonDocument(json));
-	settings->save();
+	settings.save();
 }
 
 void SettingsQml::logOut(const QString &mode)

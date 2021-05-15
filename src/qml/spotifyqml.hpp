@@ -26,53 +26,53 @@ public:
 	explicit SpotifyQml(QObject *parent = nullptr);
 	~SpotifyQml() override;
 
-	QJsonArray getPlaylists();
-	QJsonObject getPlayback();
+	auto getPlaylists() -> QJsonArray;
+	auto getPlayback() -> QJsonObject;
 
-	bool getPlaying();
+	auto getPlaying() -> bool;
 	void setPlaying(bool playing);
 
-	bool getShuffle();
+	auto getShuffle() -> bool;
 	void setShuffle(bool shuffle);
 
-	bool getRepeat();
+	auto getRepeat() -> bool;
 	void setRepeat(bool repeat);
 
-	int getPosition();
+	auto getPosition() -> int;
 	void setPosition(int position);
 
-	QJsonArray getRecentlyPlayed() const;
-	QJsonArray getSavedTracks() const;
-	QJsonArray getTopTracks() const;
-	QJsonArray getSavedAlbums() const;
-	QJsonArray getTopArtists() const;
-	QJsonArray getFollowedArtists() const;
+	auto getRecentlyPlayed() const -> QJsonArray;
+	auto getSavedTracks() const -> QJsonArray;
+	auto getTopTracks() const -> QJsonArray;
+	auto getSavedAlbums() const -> QJsonArray;
+	auto getTopArtists() const -> QJsonArray;
+	auto getFollowedArtists() const -> QJsonArray;
 
 	// Get tracks
-	Q_INVOKABLE QJsonArray getPlaylistTracks(const QString &playlistId);
-	Q_INVOKABLE QJsonArray getAlbumTracks(const QString &albumId);
+	Q_INVOKABLE auto getPlaylistTracks(const QString &playlistId) -> QJsonArray;
+	Q_INVOKABLE auto getAlbumTracks(const QString &albumId) -> QJsonArray;
 
 	// Play tracks
-	Q_INVOKABLE QString playTracksWithContext(int trackIndex, const QString &context);
-	Q_INVOKABLE QString playTrack(const QString &track);
+	Q_INVOKABLE auto playTracksWithContext(int trackIndex, const QString &context) -> QString;
+	Q_INVOKABLE auto playTrack(const QString &track) -> QString;
 
 	// Playlists
-	Q_INVOKABLE QString addToPlaylist(const QString &playlistId, const QString &trackId);
-	Q_INVOKABLE QString removeFromPlaylist(const QString &playlistId, const QString &trackId);
+	Q_INVOKABLE auto addToPlaylist(const QString &playlistId, const QString &trackId) -> QString;
+	Q_INVOKABLE auto removeFromPlaylist(const QString &playlistId, const QString &trackId) -> QString;
 
 	// Playback control
-	Q_INVOKABLE QString previous();
-	Q_INVOKABLE QString next();
+	Q_INVOKABLE auto previous() -> QString;
+	Q_INVOKABLE auto next() -> QString;
 
 	// Other
 	Q_INVOKABLE void requestPlayback();
-	Q_INVOKABLE QString systemInfo();
-	Q_INVOKABLE QJsonObject search(const QString &query);
-	Q_INVOKABLE QJsonObject getArtist(const QString &id);
-	Q_INVOKABLE QJsonObject getArtistPages(const QString &id);
-	Q_INVOKABLE bool isSavedTrack(const QString &trackId);
-	Q_INVOKABLE QString setSavedTrack(const QString &trackId, bool saved);
-	Q_INVOKABLE QString addToQueue(const QString &trackId);
+	Q_INVOKABLE auto systemInfo() -> QString;
+	Q_INVOKABLE auto search(const QString &query) -> QJsonObject;
+	Q_INVOKABLE auto getArtist(const QString &id) -> QJsonObject;
+	Q_INVOKABLE auto getArtistPages(const QString &id) -> QJsonObject;
+	Q_INVOKABLE auto isSavedTrack(const QString &trackId) -> bool;
+	Q_INVOKABLE auto setSavedTrack(const QString &trackId, bool saved) -> QString;
+	Q_INVOKABLE auto addToQueue(const QString &trackId) -> QString;
 
 signals:
 	void playlistsChanged();
