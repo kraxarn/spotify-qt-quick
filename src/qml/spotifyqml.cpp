@@ -3,7 +3,7 @@
 SpotifyQml::SpotifyQml(QObject *parent)
 	: QObject(parent)
 {
-	spotify = new spt::Spotify(settings.getSettings());
+	spotify = new lib::spt::api(settings.getSettings());
 
 	auto timer = new QTimer(this);
 	QTimer::connect(timer, &QTimer::timeout, this, &SpotifyQml::refresh);

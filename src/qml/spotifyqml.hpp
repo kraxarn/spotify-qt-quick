@@ -80,15 +80,15 @@ signals:
 	void playingChanged();
 
 private:
-	spt::Spotify *spotify = nullptr;
+	lib::spt::api *spotify = nullptr;
 	SettingsQml settings;
-	spt::Playback current;
+	lib::spt::playback current;
 
 	int refreshCount = -1;
 
 	void refresh();
-	void refreshed(const spt::Playback &playback);
-	static QJsonArray tracksToJson(QVector<spt::Track> &tracks);
+	void refreshed(const lib::spt::playback &playback);
+	static auto tracksToJson(QVector<lib::spt::track> &tracks) -> QJsonArray;
 	void requestCurrentPlayback();
 };
 
