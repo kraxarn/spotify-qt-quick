@@ -56,5 +56,7 @@ target_link_libraries(spotify-qt-quick PRIVATE
 	Qt5::WebEngine)
 
 # spotify-qt-lib
+set(QT_VERSION_MAJOR 5)
+set(LIB_QT_IMPL ON)
 add_subdirectory(core/lib)
 target_link_libraries(spotify-qt-quick PRIVATE spotify-qt-lib)
