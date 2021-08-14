@@ -1,7 +1,7 @@
 #include "qmlmanager.hpp"
 #include "lib/qtquickpaths.hpp"
 
-#include <QApplication>
+#include <QGuiApplication>
 #include <QCoreApplication>
 #include <QCommandLineParser>
 
@@ -15,12 +15,12 @@ auto main(int argc, char **argv) -> int
 	// High-DPI support
 	// These flags are deprecated and always enabled in Qt 6 and newer
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-	QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif
 
 	// Create Qt application
-	QApplication app(argc, argv);
+	QGuiApplication app(argc, argv);
 
 	// Settings
 	QtQuickPaths paths(nullptr);
@@ -58,5 +58,5 @@ auto main(int argc, char **argv) -> int
 	qml.main();
 
 	// Run
-	return QApplication::exec();
+	return QGuiApplication::exec();
 }
