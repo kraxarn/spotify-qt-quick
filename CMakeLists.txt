@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(spotify-qt-quick LANGUAGES CXX)
+project(spotify-qt-quick LANGUAGES CXX VERSION 2.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -39,6 +39,9 @@ if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 		OUTPUT_STRIP_TRAILING_WHITESPACE)
 	target_compile_definitions(spotify-qt-quick PRIVATE GIT_COMMIT="${GIT_COMMIT}")
 endif ()
+
+# Version macros
+target_compile_definitions(${PROJECT_NAME} PRIVATE APP_VERSION="v${PROJECT_VERSION}")
 
 # Don't show console window under windows
 if (WIN32)
