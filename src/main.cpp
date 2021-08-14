@@ -1,4 +1,3 @@
-#include "appversion.hpp"
 #include "qmlmanager.hpp"
 #include "lib/qtquickpaths.hpp"
 
