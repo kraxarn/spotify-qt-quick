@@ -6,4 +6,4 @@
 #include "lib/qt/systeminfo.hpp"
 
 #include <QObject>
-#include <QtQml>
+#include <qqml.h>
