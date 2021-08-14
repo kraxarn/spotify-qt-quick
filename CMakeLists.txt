@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find Qt
 # TODO: Not properly updated for Qt 6 yet
-find_package(Qt5 COMPONENTS Quick QuickControls2 Widgets WebEngine REQUIRED)
+find_package(Qt5 COMPONENTS Quick QuickControls2 REQUIRED)
 
 # Glob source files
 file(GLOB MAIN_SRC "${PROJECT_SOURCE_DIR}/src/*.[hc]pp")
@@ -52,11 +52,7 @@ endif ()
 target_link_libraries(spotify-qt-quick PRIVATE
 	Qt5::Core
 	Qt5::Quick
-	Qt5::QuickControls2
-	# TODO: Some stuff like dialogs still depend on Widgets
-	Qt5::Widgets
-	# TODO: WebEngine doesn't actually work on mobile
-	Qt5::WebEngine)
+	Qt5::QuickControls2)
 
 # spotify-qt-lib
 set(QT_VERSION_MAJOR 5)
