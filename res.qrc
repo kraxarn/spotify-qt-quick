@@ -19,16 +19,5 @@
         <file>qml/TrackMenu.qml</file>
         <file>qml/main.qml</file>
         <file>qml/setup.qml</file>
-        <!-- JS -->
-        <file>js/ArtistDialog.js</file>
-        <file>js/Footer.js</file>
-        <file>js/LibraryView.js</file>
-        <file>js/LogOutDialog.js</file>
-        <file>js/PlaylistView.js</file>
-        <file>js/SearchView.js</file>
-        <file>js/SettingsDialog.js</file>
-        <file>js/TrackMenu.js</file>
-        <file>js/main.js</file>
-        <file>js/setup.js</file>
     </qresource>
 </RCC>
