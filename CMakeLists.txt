@@ -22,13 +22,13 @@ set(SOURCES ${MAIN_SRC} ${SUB_SRC})
 
 # Add all source files to main executable
 if (ANDROID)
-	add_library(spotify-qt-quick SHARED ${SOURCES} res.qrc)
+	add_library(${PROJECT_NAME} SHARED ${SOURCES} res.qrc)
 else ()
-	add_executable(spotify-qt-quick ${SOURCES} res.qrc)
+	add_executable(${PROJECT_NAME} ${SOURCES} res.qrc)
 endif ()
 
 # Headers are in src/
-target_include_directories(spotify-qt-quick PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 # Get version from Git
 find_package(Git QUIET)
@@ -37,7 +37,7 @@ if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
 		OUTPUT_VARIABLE GIT_COMMIT
 		OUTPUT_STRIP_TRAILING_WHITESPACE)
-	target_compile_definitions(spotify-qt-quick PRIVATE GIT_COMMIT="${GIT_COMMIT}")
+	target_compile_definitions(${PROJECT_NAME} PRIVATE GIT_COMMIT="${GIT_COMMIT}")
 endif ()
 
 # Version macros
@@ -45,11 +45,11 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE APP_VERSION="v${PROJECT_VERSI
 
 # Don't show console window under windows
 if (WIN32)
-	target_link_options(spotify-qt PRIVATE -mwindows)
+	target_link_options(${PROJECT_NAME} PRIVATE -mwindows)
 endif ()
 
 # Link Qt
-target_link_libraries(spotify-qt-quick PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
 	Qt5::Core
 	Qt5::Quick
 	Qt5::QuickControls2)
@@ -58,4 +58,4 @@ target_link_libraries(spotify-qt-quick PRIVATE
 set(QT_VERSION_MAJOR 5)
 set(LIB_QT_IMPL ON)
 add_subdirectory(core/lib)
-target_link_libraries(spotify-qt-quick PRIVATE spotify-qt-lib)
+target_link_libraries(${PROJECT_NAME} PRIVATE spotify-qt-lib)
