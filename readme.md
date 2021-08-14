@@ -2,5 +2,6 @@
 This repo contains the Qt Quick user interface for [spotify-qt](https://github.com/kraxarn/spotify-qt). 
 It's mostly intended for use with mobile devices, but can be used with desktop devices as well.
 
-Currently quite early in development, so it's recommended to use the default Qt Widgets user interface for now.
-Compile [spotify-qt](https://github.com/kraxarn/spotify-qt) with `-DUSE_QT_QUICK=1` to enable.
+**NOTE:** This application is currently being re-written from the ground up, so a lot of features 
+will be missing or not working. If you need something now, use the latest "stable" version, or
+use [spotify-qt](https://github.com/kraxarn/spotify-qt) instead.
