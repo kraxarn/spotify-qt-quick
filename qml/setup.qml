@@ -1,13 +1,9 @@
-import com.kraxarn.utils 1.0
-import com.kraxarn.settings 1.0
+import Page.Setup 1.0
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.12
-import QtWebEngine 1.10
-
-import "/js/setup.js" as JS
 
 ApplicationWindow {
 	id: root
@@ -17,12 +13,8 @@ ApplicationWindow {
 	height: 960
 	Material.theme: Material.System
 
-	Settings {
-		id: settings
-	}
-
-	Utils {
-		id: utils
+	Setup {
+		id: setup
 	}
 
 	OpenLinkDialog {
@@ -41,18 +33,6 @@ ApplicationWindow {
 		}
 	}
 
-	Drawer {
-		id: authDrawer
-		width: root.width
-		height: root.height
-		edge: Qt.BottomEdge
-		WebEngineView {
-			id: authWeb
-			anchors.fill: parent
-			onLoadingChanged: loadRequest => JS.webLoadingChanged(loadRequest)
-		}
-	}
-
 	ColumnLayout {
 		anchors {
 			left: parent.left
@@ -64,9 +44,8 @@ ApplicationWindow {
 			text: "Welcome to spotify-qt-quick!"
 			font.pointSize: 16
 		}
-		Label {
+		WelcomeLabel {
 			Layout.topMargin: 16
-			text: JS.getWelcomeText()
 		}
 		Label {
 			text: "Client ID"
@@ -75,7 +54,7 @@ ApplicationWindow {
 		TextField {
 			id: clientId
 			Layout.fillWidth: true
-			text: settings.account.client_id
+			text: setup.clientId
 		}
 		Label {
 			text: "Client Secret"
@@ -84,7 +63,7 @@ ApplicationWindow {
 		TextField {
 			id: clientSecret
 			Layout.fillWidth: true
-			text: settings.account.client_secret
+			text: setup.clientSecret
 		}
 	}
 
@@ -100,17 +79,17 @@ ApplicationWindow {
 		Button {
 			text: "Cancel"
 			Layout.fillWidth: true
-			onClicked: root.close()
+			onClicked: setup.close()
 		}
 		Button {
 			text: "Spotify Dashboard"
 			Layout.fillWidth: true
-			onClicked: JS.openDashboard()
+			onClicked: setup.openDashboard()
 		}
 		Button {
 			text: "Authenticate"
 			Layout.fillWidth: true
-			onClicked: JS.authenticate()
+			onClicked: setup.authenticate()
 		}
 	}
 }

@@ -1,10 +1,11 @@
-import com.kraxarn.utils 1.0
+import Qml.GuiApplication 1.0
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
 Dialog {
+	objectName: "openLinkDialog"
 	title: "Link error"
 	modal: true
 	anchors.centerIn: parent
@@ -12,8 +13,8 @@ Dialog {
 
 	property string linkText
 
-	Utils {
-		id: utils
+	GuiApplication {
+		id: app
 	}
 
 	Timer {

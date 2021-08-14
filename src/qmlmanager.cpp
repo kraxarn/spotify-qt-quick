@@ -5,9 +5,6 @@ QmlManager::QmlManager(lib::settings &settings)
 	settings(settings)
 {
 	defineTypes();
-
-	// TODO: Qt on mobile doesn't support WebEngine, do something else
-	//QtWebEngine::initialize();
 }
 
 void QmlManager::defineTypes()
@@ -23,41 +20,16 @@ void QmlManager::defineTypes()
 	appEngine->rootContext()->setContextProperty("QtVersion", QString("%1.%2")
 		.arg(QT_VERSION_MAJOR, QT_VERSION_MINOR));
 
-//	qmlRegisterType<SpotifyQml>("com.kraxarn.spotify",
-//		1, 0,
-//		"Spotify");
-//
-//	qmlRegisterType<UtilsQml>("com.kraxarn.utils",
-//		1, 0,
-//		"Utils");
-//
-//	qmlRegisterType<SettingsQml>("com.kraxarn.settings",
-//		1, 0,
-//		"Settings");
+	// Custom types
+	addType<Qml::GuiApplication>("Qml.GuiApplication", "GuiApplication");
+	addType<Qml::Settings>("Qml.Settings", "Settings");
+
+	// Pages
+	addType<Page::Setup>("Page.Setup", "Setup");
 }
 
 void QmlManager::load(const QString &url)
 {
-	appEngine->load(QUrl(url));
-}
-
-auto QmlManager::setup() -> bool
-{
-	load("qrc:/qml/setup.qml");
-	QCoreApplication::exec();
-	settings.load();
-
-	return settings.account.access_token.empty()
-		|| settings.account.refresh_token.empty();
-}
-
-void QmlManager::main()
-{
-	auto settingsStyle = QString::fromStdString(settings.general.style);
-	QQuickStyle::setStyle(QQuickStyle::availableStyles().contains(settingsStyle)
-		? settingsStyle
-		: "Material");
-
 	QQmlApplicationEngine::connect(appEngine, &QQmlApplicationEngine::objectCreated,
 		this, [](QObject *obj, const QUrl &url)
 		{
@@ -69,5 +41,40 @@ void QmlManager::main()
 			}
 		}, Qt::QueuedConnection);
 
-	appEngine->load(QUrl("qrc:/qml/main.qml"));
+	appEngine->load(QUrl(url));
+}
+
+void QmlManager::setStyle() const
+{
+	/*
+	 * TODO
+	 * Dark theme in spotify-qt uses Fusion, while dark theme in
+	 * spotify-qt-quick uses Material. These should probably not
+	 * depend on each other, so force Material on dark theme
+	 * for now
+	 */
+
+	const auto settingsStyle = settings.get_dark_theme()
+		? "Material"
+		: QString::fromStdString(settings.general.style);
+
+	QQuickStyle::setStyle(QQuickStyle::availableStyles().contains(settingsStyle)
+		? settingsStyle
+		: "Material");
+}
+
+auto QmlManager::setup() -> bool
+{
+	setStyle();
+	load("qrc:/qml/setup.qml");
+	QCoreApplication::exec();
+
+	return settings.account.access_token.empty()
+		|| settings.account.refresh_token.empty();
+}
+
+void QmlManager::main()
+{
+	setStyle();
+	load("qrc:/qml/main.qml");
 }
