@@ -58,9 +58,8 @@ void QmlManager::setStyle() const
 		? "Material"
 		: QString::fromStdString(settings.general.style);
 
-	QQuickStyle::setStyle(QQuickStyle::availableStyles().contains(settingsStyle)
-		? settingsStyle
-		: "Material");
+	QQuickStyle::setFallbackStyle("Material");
+	QQuickStyle::setStyle(settingsStyle);
 }
 
 auto QmlManager::setup() -> bool
