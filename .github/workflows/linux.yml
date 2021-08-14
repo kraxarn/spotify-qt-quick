@@ -20,7 +20,7 @@ jobs:
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Install Dependencies
-      run: sudo apt update && sudo apt install qt5-default qtdeclarative5-dev qtquickcontrols2-5-dev -y
+      run: sudo apt update && sudo apt install qt5-default qtdeclarative5-dev qtquickcontrols2-5-dev libqt5qml5 -y
 
     - name: Configure CMake
       shell: bash
