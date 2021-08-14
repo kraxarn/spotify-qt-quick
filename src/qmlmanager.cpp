@@ -23,17 +23,17 @@ void QmlManager::defineTypes()
 	appEngine->rootContext()->setContextProperty("QtVersion", QString("%1.%2")
 		.arg(QT_VERSION_MAJOR, QT_VERSION_MINOR));
 
-	qmlRegisterType<SpotifyQml>("com.kraxarn.spotify",
-		1, 0,
-		"Spotify");
-
-	qmlRegisterType<UtilsQml>("com.kraxarn.utils",
-		1, 0,
-		"Utils");
-
-	qmlRegisterType<SettingsQml>("com.kraxarn.settings",
-		1, 0,
-		"Settings");
+//	qmlRegisterType<SpotifyQml>("com.kraxarn.spotify",
+//		1, 0,
+//		"Spotify");
+//
+//	qmlRegisterType<UtilsQml>("com.kraxarn.utils",
+//		1, 0,
+//		"Utils");
+//
+//	qmlRegisterType<SettingsQml>("com.kraxarn.settings",
+//		1, 0,
+//		"Settings");
 }
 
 void QmlManager::load(const QString &url)
