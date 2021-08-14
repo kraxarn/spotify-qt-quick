@@ -7,3 +7,8 @@
 
 #include <QObject>
 #include <qqml.h>
+
+// For Qt versions that don't use QML_ELEMENT
+#ifndef QML_ELEMENT
+#define QML_ELEMENT
+#endif
