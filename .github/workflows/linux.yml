@@ -18,7 +18,7 @@ jobs:
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Install Dependencies
-      run: sudo apt update && sudo apt install build-essential qt5-default libqt5quick5 -y
+      run: sudo apt update && sudo apt install build-essential qt5-default qtdeclarative5-dev -y
 
     - name: Configure CMake
       shell: bash
