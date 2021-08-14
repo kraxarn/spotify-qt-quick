@@ -11,9 +11,16 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Optional Qt 6 support
+if (DEFINED USE_QT6)
+	set(QT_VERSION_MAJOR 6)
+else ()
+	set(QT_VERSION_MAJOR 5)
+endif ()
+
 # Find Qt
-# TODO: Not properly updated for Qt 6 yet
-find_package(Qt5 COMPONENTS Quick QuickControls2 REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Quick QuickControls2 REQUIRED)
+message(STATUS "Using Qt ${QT_VERSION_MAJOR}")
 
 # Glob source files
 file(GLOB MAIN_SRC "${PROJECT_SOURCE_DIR}/src/*.[hc]pp")
@@ -50,12 +57,12 @@ endif ()
 
 # Link Qt
 target_link_libraries(${PROJECT_NAME} PRIVATE
-	Qt5::Core
-	Qt5::Quick
-	Qt5::QuickControls2)
+	Qt${QT_VERSION_MAJOR}::Core
+	Qt${QT_VERSION_MAJOR}::Gui
+	Qt${QT_VERSION_MAJOR}::Quick
+	Qt${QT_VERSION_MAJOR}::QuickControls2)
 
 # spotify-qt-lib
-set(QT_VERSION_MAJOR 5)
 set(LIB_QT_IMPL ON)
 add_subdirectory(core/lib)
 target_link_libraries(${PROJECT_NAME} PRIVATE spotify-qt-lib)
