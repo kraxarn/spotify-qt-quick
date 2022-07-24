@@ -6,6 +6,7 @@ env:
   BUILD_TYPE: Release
   QT_VERSION: "6.3.1"
   QT_ARCH: "android_arm64_v8a"
+  QT_TARGET: "android"
 
 jobs:
   build:
@@ -29,6 +30,7 @@ jobs:
           cached: ${{steps.cache-qt.outputs.cache-hit}}
           version: ${{env.QT_VERSION}}
           arch: ${{env.QT_ARCH}}
+          target: ${{env.QT_TARGET}}
 
       - name: Configure CMake
         run: ${{runner.workspace}}/Qt/$QT_VERSION/$QT_ARCH/bin/qt-cmake . -DCMAKE_BUILD_TYPE=$BUILD_TYPE
