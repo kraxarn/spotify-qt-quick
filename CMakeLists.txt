@@ -11,16 +11,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Optional Qt 6 support
-if (DEFINED USE_QT6)
-	set(QT_VERSION_MAJOR 6)
-else ()
-	set(QT_VERSION_MAJOR 5)
-endif ()
-
 # Find Qt
+include(core/cmake/FindQt.cmake)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Quick QuickControls2 REQUIRED)
-message(STATUS "Using Qt ${QT_VERSION_MAJOR}")
 
 # Glob source files
 file(GLOB MAIN_SRC "${PROJECT_SOURCE_DIR}/src/*.[hc]pp")
