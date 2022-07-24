@@ -30,10 +30,6 @@ jobs:
           version: ${{env.QT_VERSION}}
           arch: ${{env.QT_ARCH}}
 
-      # https://doc.qt.io/qt-6/android-getting-started.html
-      - name: Install Android SDK
-        run: sdkmanager --install "cmdline-tools;latest" "platform-tools" "platforms;android-31" "build-tools;31.0.0" "ndk;22.1.7171670"
-
       - name: Configure CMake
         shell: bash
         working-directory: ${{runner.workspace}}/build
