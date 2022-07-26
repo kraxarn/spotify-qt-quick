@@ -47,7 +47,7 @@ jobs:
       - name: Configure CMake
         env:
           QT_HOST_PATH: ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/${{env.QT_HOST_ARCH}}
-          ANDROID_NDK: ${{env.ANDROID_SDK_ROOT}}/android-ndk-r22b
+          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk/22.1.7171670
         run: |
           find $ANDROID_SDK_ROOT
           ${{runner.workspace}}/Qt/$QT_VERSION/$QT_ARCH/bin/qt-cmake . -DCMAKE_BUILD_TYPE=$BUILD_TYPE
