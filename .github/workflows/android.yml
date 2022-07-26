@@ -25,6 +25,10 @@ jobs:
           path: ${{runner.workspace}}/Qt
           key: qt-${{env.QT_VERSION}}-${{env.QT_ARCH}}-${{env.QT_HOST_ARCH}}
 
+      # https://doc.qt.io/qt-6/android-getting-started.html
+      - name: Install dependencies
+        run: sdkmanager --install "cmdline-tools;latest" "platform-tools" "platforms;android-31" "build-tools;31.0.0" "ndk;22.1.7171670"
+
       - name: Install Qt (Android)
         uses: jurplel/install-qt-action@v2
         with:
