@@ -21,10 +21,14 @@ file(GLOB SUB_SRC "${PROJECT_SOURCE_DIR}/src/*/*.[hc]pp")
 set(SOURCES ${MAIN_SRC} ${SUB_SRC})
 
 # Add all source files to main executable
-if (ANDROID)
-	add_library(${PROJECT_NAME} SHARED ${SOURCES} res.qrc)
+if (QT_VERSION_MAJOR EQUAL 6)
+	qt_add_executable(${PROJECT_NAME} ${SOURCES} res.qrc)
 else ()
-	add_executable(${PROJECT_NAME} ${SOURCES} res.qrc)
+	if (ANDROID)
+		add_library(${PROJECT_NAME} SHARED ${SOURCES} res.qrc)
+	else ()
+		add_executable(${PROJECT_NAME} ${SOURCES} res.qrc)
+	endif ()
 endif ()
 
 # Headers are in src/
