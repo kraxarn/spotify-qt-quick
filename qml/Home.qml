@@ -36,16 +36,12 @@ ListView {
 				Layout.fillWidth: true
 			}
 
-			Button {
-				icon.source: icSrc("expand_more")
-				flat: true
-				visible: model.expand
-				rotation: 180
-			}
-
 			Image {
-				source: icSrc("chevron_right")
-				visible: !!model.navigate
+				source: model.expand ? icSrc("expand_more")
+					: model.navigate ? icSrc("chevron_right")
+					: ""
+				visible: !!model.expand || !!model.navigate
+				rotation: model.expand ? 180 : 0
 			}
 		}
 	}
