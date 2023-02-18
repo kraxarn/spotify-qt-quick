@@ -1,38 +1,31 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 project(spotify-qt-quick LANGUAGES CXX VERSION 2.0)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_AUTOUIC ON)
+# Qt
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 
-# C++14
-set(CMAKE_CXX_STANDARD 14)
+# C++17
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find Qt
-include(core/cmake/FindQt.cmake)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Quick QuickControls2 REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui Quick QuickControls2 REQUIRED)
 
-# Glob source files
-file(GLOB MAIN_SRC "${PROJECT_SOURCE_DIR}/src/*.[hc]pp")
-file(GLOB SUB_SRC "${PROJECT_SOURCE_DIR}/src/*/*.[hc]pp")
-set(SOURCES ${MAIN_SRC} ${SUB_SRC})
+# Create main executable
+qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE)
 
-# Add all source files to main executable
-if (QT_VERSION_MAJOR EQUAL 6)
-	qt_add_executable(${PROJECT_NAME} ${SOURCES} res.qrc)
-else ()
-	if (ANDROID)
-		add_library(${PROJECT_NAME} SHARED ${SOURCES} res.qrc)
-	else ()
-		add_executable(${PROJECT_NAME} ${SOURCES} res.qrc)
-	endif ()
-endif ()
+# Collect source files
+add_subdirectory(src)
+
+# Resources
+include(QmlModule.cmake)
 
 # Headers are in src/
-target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories(${PROJECT_NAME} PRIVATE
+	"${CMAKE_CURRENT_SOURCE_DIR}/src"
+	# QML requires headers in root
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/page"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/qml")
 
 # Get version from Git
 find_package(Git QUIET)
@@ -44,8 +37,13 @@ if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 	target_compile_definitions(${PROJECT_NAME} PRIVATE GIT_COMMIT="${GIT_COMMIT}")
 endif ()
 
-# Version macros
+# App related definitions
 target_compile_definitions(${PROJECT_NAME} PRIVATE APP_VERSION="v${PROJECT_VERSION}")
+target_compile_definitions(${PROJECT_NAME} PRIVATE APP_NAME="${PROJECT_NAME}")
+target_compile_definitions(${PROJECT_NAME} PRIVATE APP_ICON="${PROJECT_NAME}")
+target_compile_definitions(${PROJECT_NAME} PRIVATE ORG_NAME="kraxarn")
+target_compile_definitions(${PROJECT_NAME} PRIVATE PKG_NAME="com.kraxarn")
+target_compile_definitions(${PROJECT_NAME} PRIVATE BUILD_TYPE="${CMAKE_BUILD_TYPE}")
 
 # Don't show console window under windows
 if (WIN32)
@@ -53,13 +51,10 @@ if (WIN32)
 endif ()
 
 # Link Qt
-target_link_libraries(${PROJECT_NAME} PRIVATE
-	Qt${QT_VERSION_MAJOR}::Core
-	Qt${QT_VERSION_MAJOR}::Gui
-	Qt${QT_VERSION_MAJOR}::Quick
-	Qt${QT_VERSION_MAJOR}::QuickControls2)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Quick Qt6::QuickControls2)
 
 # spotify-qt-lib
+set(QT_VERSION_MAJOR 6)
 set(LIB_QT_IMPL ON)
 add_subdirectory(core/lib)
 target_link_libraries(${PROJECT_NAME} PRIVATE spotify-qt-lib)
