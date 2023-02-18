@@ -45,6 +45,11 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE ORG_NAME="kraxarn")
 target_compile_definitions(${PROJECT_NAME} PRIVATE PKG_NAME="com.kraxarn")
 target_compile_definitions(${PROJECT_NAME} PRIVATE BUILD_TYPE="${CMAKE_BUILD_TYPE}")
 
+# Enable QML debugging in debug
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+	target_compile_definitions(${PROJECT_NAME} PRIVATE QT_QML_DEBUG)
+endif ()
+
 # Don't show console window under windows
 if (WIN32)
 	target_link_options(${PROJECT_NAME} PRIVATE -mwindows)
