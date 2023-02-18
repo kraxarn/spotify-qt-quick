@@ -20,7 +20,7 @@ private:
 	QQmlApplicationEngine appEngine;
 	lib::settings &settings;
 
-	void setStyle() const;
+	static void setStyle();
 	void defineTypes();
 
 	static void onObjectCreated(QObject *object, const QUrl &url);

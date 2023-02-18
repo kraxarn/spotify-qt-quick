@@ -49,22 +49,9 @@ void QmlManager::load(const QString &url)
 	appEngine.load(QUrl(url));
 }
 
-void QmlManager::setStyle() const
+void QmlManager::setStyle()
 {
-	/*
-	 * TODO
-	 * Dark theme in spotify-qt uses Fusion, while dark theme in
-	 * spotify-qt-quick uses Material. These should probably not
-	 * depend on each other, so force Material on dark theme
-	 * for now
-	 */
-
-	const auto settingsStyle = settings.get_dark_theme()
-		? "Material"
-		: QString::fromStdString(settings.general.style);
-
-	QQuickStyle::setFallbackStyle("Material");
-	QQuickStyle::setStyle(settingsStyle);
+	QQuickStyle::setStyle(QStringLiteral("Material"));
 }
 
 auto QmlManager::setup() -> bool
