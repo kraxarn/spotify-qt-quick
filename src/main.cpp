@@ -12,13 +12,6 @@ auto main(int argc, char **argv) -> int
 	QCoreApplication::setApplicationName("spotify-qt");
 	QCoreApplication::setApplicationVersion(APP_VERSION);
 
-	// High-DPI support
-	// These flags are deprecated and always enabled in Qt 6 and newer
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
-
 	// Create Qt application
 	QGuiApplication app(argc, argv);
 
