@@ -1,4 +1,6 @@
 #include "page/setup.hpp"
+#include "util/url.hpp"
+#include <QCoreApplication>
 
 Page::Setup::Setup(QObject *parent)
 	: settings(this),

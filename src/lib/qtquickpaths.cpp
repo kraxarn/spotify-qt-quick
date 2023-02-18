@@ -1,4 +1,4 @@
-#include "qtquickpaths.hpp"
+#include "lib/qtquickpaths.hpp"
 
 QtQuickPaths::QtQuickPaths(QObject *parent)
 	: QObject(parent)

@@ -10,8 +10,8 @@ class QtQuickPaths: public QObject, public lib::paths
 public:
 	explicit QtQuickPaths(QObject *parent);
 
-	auto config_file() const -> ghc::filesystem::path override;
-	auto cache() const -> ghc::filesystem::path override;
+	[[nodiscard]] auto config_file() const -> ghc::filesystem::path override;
+	[[nodiscard]] auto cache() const -> ghc::filesystem::path override;
 
 private:
 	ghc::filesystem::path configFile;

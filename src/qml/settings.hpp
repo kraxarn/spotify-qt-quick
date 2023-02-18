@@ -1,9 +1,9 @@
 #pragma once
 
 #include "lib/settings.hpp"
-
-#include "common.hpp"
 #include "lib/qtquickpaths.hpp"
+
+#include <QtQml/qqmlregistration.h>
 
 namespace Qml
 {

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "common.hpp"
 #include "qml/settings.hpp"
-#include "util/url.hpp"
+#include <QtQml/qqmlregistration.h>
 
 namespace Page
 {
@@ -15,16 +14,16 @@ namespace Page
 		Q_PROPERTY(QString clientSecret READ getClientSecret WRITE setClientSecret NOTIFY clientSecretChanged)
 
 	public:
-		explicit Setup(QObject *parent = nullptr);
+		explicit Setup(QObject *parent);
 
 		Q_INVOKABLE void close();
 		Q_INVOKABLE void openDashboard();
 		Q_INVOKABLE void authenticate();
 
-		auto getClientId() const -> QString;
+		[[nodiscard]] auto getClientId() const -> QString;
 		void setClientId(const QString &value);
 
-		auto getClientSecret() const -> QString;
+		[[nodiscard]] auto getClientSecret() const -> QString;
 		void setClientSecret(const QString &value);
 
 	signals:
