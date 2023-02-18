@@ -7,7 +7,6 @@ qt_add_qml_module(${PROJECT_NAME}
 	NO_RESOURCE_TARGET_PATH
 	QML_FILES
 	qml/Home.qml
-	qml/HomeModel.qml
 	qml/MainFooter.qml
 	qml/MainHeader.qml
 	qml/MainPage.qml

@@ -1,3 +1,5 @@
+import Model.Home
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -37,11 +39,11 @@ ListView {
 			}
 
 			Image {
-				source: model.expand ? icSrc("expand_more")
-					: model.navigate ? icSrc("chevron_right")
+				source: model.iconType === 1 ? icSrc("expand_more")
+					: model.iconType === 2 ? icSrc("chevron_right")
 					: ""
-				visible: !!model.expand || !!model.navigate
-				rotation: model.expand ? 180 : 0
+				visible: model.iconType > 0
+				rotation: model.iconType === 1 ? 180 : 0
 			}
 		}
 	}

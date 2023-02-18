@@ -1,4 +1,6 @@
 add_subdirectory(lib)
+add_subdirectory(model)
+add_subdirectory(item)
 add_subdirectory(page)
 add_subdirectory(qml)
 add_subdirectory(util)

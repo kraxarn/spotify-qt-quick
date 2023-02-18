@@ -3,6 +3,8 @@
 #include "page/setup.hpp"
 #include "page/main.hpp"
 
+#include "model/home.hpp"
+
 #include <QQmlContext>
 #include <QCoreApplication>
 #include <QQuickStyle>
@@ -37,6 +39,9 @@ void QmlManager::defineTypes()
 	// Pages
 	qmlRegisterType<Page::Setup>("Page.Setup", 1, 0, "Setup");
 	qmlRegisterType<Page::Main>("Page.Main", 1, 0, "Main");
+
+	// Models
+	qmlRegisterType<Model::Home>("Model.Home", 1, 0, "HomeModel");
 }
 
 void QmlManager::load(const QString &url)
