@@ -50,6 +50,13 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 	target_compile_definitions(${PROJECT_NAME} PRIVATE QT_QML_DEBUG)
 endif ()
 
+# Install icons and desktop shortcut on unix-like
+# Currently, it uses the same icon as spotify-qt
+if (UNIX)
+	install(FILES core/res/logo/spotify-qt.svg DESTINATION share/icons/hicolor/scalable/apps)
+	install(FILES res/app/spotify-qt-quick.desktop DESTINATION share/applications)
+endif ()
+
 # Don't show console window under windows
 if (WIN32)
 	target_link_options(${PROJECT_NAME} PRIVATE -mwindows)
