@@ -8,7 +8,7 @@ env:
   QT_ARCH: "android_arm64_v8a"
   QT_HOST_ARCH: "gcc_64"
   QT_TARGET: "android"
-  NDK_VERSION: "23.1.7779620"
+  NDK_VERSION: "22.1.7171670"
 
 jobs:
   build:
