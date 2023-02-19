@@ -1,38 +1,38 @@
 name: Ubuntu
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 env:
   BUILD_TYPE: Release
 
 jobs:
   build:
-    # Qt 6.3 requires Ubuntu 20.04
-    runs-on: ubuntu-20.04
+    # Qt 6 started shipping with Ubuntu 22.04
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: true
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
 
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{runner.workspace}}/build
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{runner.workspace}}/build
 
-    - name: Install Dependencies
-      run: sudo apt update && sudo apt install qt6-base-dev qt6-declarative-dev -y
+      - name: Install Dependencies
+        run: sudo apt update && sudo apt install qt6-base-dev qt6-declarative-dev -y
 
-    - name: Configure CMake
-      shell: bash
-      working-directory: ${{runner.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      - name: Configure CMake
+        shell: bash
+        working-directory: ${{runner.workspace}}/build
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
-    - name: Build
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: cmake --build . --config $BUILD_TYPE
+      - name: Build
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: spotify-qt-quick
-        path: ${{runner.workspace}}/build/spotify-qt-quick
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: spotify-qt-quick
+          path: ${{runner.workspace}}/build/spotify-qt-quick
