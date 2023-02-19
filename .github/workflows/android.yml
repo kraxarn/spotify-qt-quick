@@ -20,7 +20,7 @@ jobs:
 
       - name: Cache Qt
         id: cache-qt
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{runner.workspace}}/Qt
           key: qt-${{env.QT_VERSION}}-${{env.QT_ARCH}}-${{env.QT_HOST_ARCH}}
@@ -54,7 +54,7 @@ jobs:
         run: cmake --build .
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: spotify-qt-quick
           path: ${{runner.workspace}}/spotify-qt-quick/android-build/build/outputs/apk/debug/*.apk
