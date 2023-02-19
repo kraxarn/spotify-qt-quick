@@ -4,11 +4,11 @@ on: [ push, pull_request ]
 
 env:
   BUILD_TYPE: Release
-  QT_VERSION: "6.2.4"
+  QT_VERSION: "6.4.2"
   QT_ARCH: "android_arm64_v8a"
   QT_HOST_ARCH: "gcc_64"
   QT_TARGET: "android"
-  NDK_VERSION: "22.1.7171670"
+  NDK_VERSION: "23.1.7779620"
 
 jobs:
   build:
