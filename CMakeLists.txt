@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 COMPONENTS Core Gui Quick QuickControls2 REQUIRED)
 
 # Create main executable
-qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE)
+qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE MANUAL_FINALIZATION)
 
 # Collect source files
 add_subdirectory(src)
@@ -62,6 +62,12 @@ if (WIN32)
 	target_link_options(${PROJECT_NAME} PRIVATE -mwindows)
 endif ()
 
+# Android config
+if (ANDROID)
+	set(QT_ANDROID_TARGET_SDK_VERSION 33)
+	qt_android_generate_deployment_settings(${PROJECT_NAME})
+endif ()
+
 # Link Qt
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Quick Qt6::QuickControls2)
 
@@ -70,3 +76,5 @@ set(QT_VERSION_MAJOR 6)
 set(LIB_QT_IMPL ON)
 add_subdirectory(core/lib)
 target_link_libraries(${PROJECT_NAME} PRIVATE spotify-qt-lib)
+
+qt_finalize_target(${PROJECT_NAME})
