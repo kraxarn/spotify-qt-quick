@@ -19,7 +19,7 @@ jobs:
         run: cmake -E make_directory ${{runner.workspace}}/build
 
       - name: Install Dependencies
-        run: sudo apt update && sudo apt install qt6-base-dev qt6-declarative-dev -y
+        run: sudo apt update && sudo apt install qt6-base-dev qt6-declarative-dev libqt6quickcontrols2-6 -y
 
       - name: Configure CMake
         shell: bash
