@@ -7,9 +7,8 @@ env:
 
 jobs:
   build:
-    # Ubuntu 18.04 is supported until April 2023
-    # See: https://wiki.ubuntu.com/Releases
-    runs-on: ubuntu-18.04
+    # Qt 6.3 requires Ubuntu 20.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
@@ -20,7 +19,7 @@ jobs:
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Install Dependencies
-      run: sudo apt update && sudo apt install qt5-default qtdeclarative5-dev qtquickcontrols2-5-dev -y
+      run: sudo apt update && sudo apt install qt6-base-dev qt6-declarative-dev -y
 
     - name: Configure CMake
       shell: bash
@@ -33,7 +32,7 @@ jobs:
       run: cmake --build . --config $BUILD_TYPE
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: spotify-qt-quick
         path: ${{runner.workspace}}/build/spotify-qt-quick
