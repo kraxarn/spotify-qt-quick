@@ -8,7 +8,7 @@
 class QtQuickPaths: public QObject, public lib::paths
 {
 public:
-	explicit QtQuickPaths(QObject *parent);
+	explicit QtQuickPaths(QObject *parent = nullptr);
 
 	[[nodiscard]] auto config_file() const -> ghc::filesystem::path override;
 	[[nodiscard]] auto cache() const -> ghc::filesystem::path override;
