@@ -64,7 +64,7 @@ endif ()
 
 # Android config
 if (ANDROID)
-	set(QT_ANDROID_TARGET_SDK_VERSION 33)
+	set_target_properties(${PROJECT_NAME} PROPERTIES QT_ANDROID_TARGET_SDK_VERSION 33)
 	qt_android_generate_deployment_settings(${PROJECT_NAME})
 endif ()
 
