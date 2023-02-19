@@ -11,12 +11,8 @@ ListView {
 	model: HomeModel {}
 
 	delegate: ItemDelegate {
+		width: parent ? parent.width : 0
 		padding: 32
-
-		anchors {
-			left: parent.left
-			right: parent.right
-		}
 
 		RowLayout {
 			anchors {
