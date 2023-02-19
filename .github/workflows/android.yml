@@ -56,6 +56,9 @@ jobs:
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: spotify-qt-quick
-          path: ${{runner.workspace}}/spotify-qt-quick/android-build/build/outputs/apk/debug/*.apk
+          path: |
+            ${{runner.workspace}}/spotify-qt-quick/android-build/build/outputs/apk/debug/*.apk
+            ${{runner.workspace}}/spotify-qt-quick/android-build/build.gradle
