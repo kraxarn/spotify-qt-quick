@@ -1,10 +1,13 @@
 #include "model/home.hpp"
 
+#include "lib/qtquickpaths.hpp"
+#include "lib/cache/jsoncache.hpp"
+
+#include <QQmlApplicationEngine>
+
 Model::Home::Home(QObject *parent)
 	: QAbstractListModel(parent)
 {
-	items.append(getLibraryItems());
-	items.append(getPlaylistItems());
 }
 
 auto Model::Home::roleNames() const -> QHash<int, QByteArray>
@@ -21,12 +24,14 @@ auto Model::Home::roleNames() const -> QHash<int, QByteArray>
 
 auto Model::Home::rowCount(const QModelIndex &/*parent*/) const -> int
 {
-	return static_cast<int>(items.count());
+	return libraryItemCount + static_cast<int>(playlists.count());
 }
 
 auto Model::Home::data(const QModelIndex &index, int role) const -> QVariant
 {
-	const auto &item = items.at(index.row());
+	const auto &item = index.row() < libraryItemCount
+		? libraryItem(index.row())
+		: playlistItem(index.row());
 
 	switch (static_cast<ItemRole>(role))
 	{
@@ -44,28 +49,68 @@ auto Model::Home::data(const QModelIndex &index, int role) const -> QVariant
 	}
 }
 
-auto Model::Home::getLibraryItems() -> QList<Item::Home>
+auto Model::Home::libraryItem(int index) -> Item::Home
 {
-	return {
-		Item::Home(QStringLiteral("Library"), {}, Item::Home::IconType::Expand, true),
-		Item::Home(QStringLiteral("History"), QStringLiteral("history")),
-		Item::Home(QStringLiteral("Liked tracks"), QStringLiteral("audiotrack")),
-		Item::Home(QStringLiteral("Top tracks"), QStringLiteral("trending_up")),
-		Item::Home(QStringLiteral("New releases"), QStringLiteral("new_releases")),
-		Item::Home(QStringLiteral("Liked albums"), QStringLiteral("album"),
-			Item::Home::IconType::Navigate),
-		Item::Home(QStringLiteral("Top artists"), QStringLiteral("timeline"),
-			Item::Home::IconType::Navigate),
-		Item::Home(QStringLiteral("Followed artists"), QStringLiteral("people"),
-			Item::Home::IconType::Navigate),
-	};
+	switch (index)
+	{
+		case 0:
+			return {QStringLiteral("Library"), {}, Item::Home::IconType::Expand, true};
+
+		case 1:
+			return {QStringLiteral("History"), QStringLiteral("history")};
+
+		case 2:
+			return {QStringLiteral("Liked tracks"), QStringLiteral("audiotrack")};
+
+		case 3:
+			return {QStringLiteral("Top tracks"), QStringLiteral("trending_up")};
+
+		case 4:
+			return {QStringLiteral("New releases"), QStringLiteral("new_releases")};
+
+		case 5:
+			return {QStringLiteral("Liked albums"), QStringLiteral("album"),
+				Item::Home::IconType::Navigate};
+
+		case 6:
+			return {QStringLiteral("Top artists"), QStringLiteral("timeline"),
+				Item::Home::IconType::Navigate};
+
+		case 7:
+			return {QStringLiteral("Followed artists"), QStringLiteral("people"),
+				Item::Home::IconType::Navigate};
+
+		default:
+			return {{}, {}};
+	}
 }
 
-auto Model::Home::getPlaylistItems() -> QList<Item::Home>
+auto Model::Home::playlistItem(int index) const -> Item::Home
 {
-	QList<Item::Home> playlists{
-		Item::Home(QStringLiteral("Playlists"), {}, Item::Home::IconType::Expand, true),
-	};
+	return playlists.at(index - libraryItemCount);
+}
 
-	return playlists;
+auto Model::Home::canFetchMore(const QModelIndex &/*parent*/) const -> bool
+{
+	return playlists.empty();
+}
+
+void Model::Home::fetchMore(const QModelIndex &parent)
+{
+	// TODO: I don't like this solution, but it works
+	const QtQuickPaths paths;
+	const lib::json_cache cache(paths);
+	const auto cachedPlaylists = cache.get_playlists();
+
+	beginInsertRows(parent, libraryItemCount,
+		libraryItemCount + static_cast<int>(cachedPlaylists.size()));
+
+	playlists.push_back({QStringLiteral("Playlists"), {}, Item::Home::IconType::Expand, true});
+
+	for (const auto &playlist: cachedPlaylists)
+	{
+		playlists.push_back({QString::fromStdString(playlist.name), {}});
+	}
+
+	endInsertRows();
 }
