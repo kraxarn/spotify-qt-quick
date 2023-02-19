@@ -61,5 +61,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Quick Qt6:
 # spotify-qt-lib
 set(QT_VERSION_MAJOR 6)
 set(LIB_QT_IMPL ON)
+set(USE_KEYCHAIN OFF)
 add_subdirectory(core/lib)
 target_link_libraries(${PROJECT_NAME} PRIVATE spotify-qt-lib)
