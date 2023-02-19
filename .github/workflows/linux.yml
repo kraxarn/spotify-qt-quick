@@ -1,38 +1,48 @@
-name: Ubuntu
+name: Linux
 
 on: [ push, pull_request ]
 
 env:
   BUILD_TYPE: Release
+  QT_VERSION: "6.4.2"
+  QT_ARCH: "gcc_64"
 
 jobs:
   build:
-    # Qt 6 started shipping with Ubuntu 22.04
-    runs-on: ubuntu-22.04
+    # Qt 6.3 requires Ubuntu 20.04
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
+          fetch-depth: 0
 
-      - name: Create Build Environment
-        run: cmake -E make_directory ${{runner.workspace}}/build
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v2
+        with:
+          path: ${{runner.workspace}}/Qt
+          key: qt-${{env.QT_VERSION}}-${{env.QT_ARCH}}
 
-      - name: Install Dependencies
-        run: sudo apt update && sudo apt install qt6-base-dev qt6-declarative-dev libqt6quickcontrols2-6 -y
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{steps.cache-qt.outputs.cache-hit}}
+          version: ${{env.QT_VERSION}}
+          arch: ${{env.QT_ARCH}}
 
       - name: Configure CMake
-        shell: bash
-        working-directory: ${{runner.workspace}}/build
-        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        run: cmake . -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=/usr -DUSE_TESTS=ON -DUSE_LTO=ON
 
       - name: Build
-        working-directory: ${{runner.workspace}}/build
-        shell: bash
         run: cmake --build . --config $BUILD_TYPE
 
+      - name: Install
+        run: make DESTDIR="${{runner.workspace}}/dist" install
+
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: spotify-qt-quick
-          path: ${{runner.workspace}}/build/spotify-qt-quick
+          path: ${{runner.workspace}}/dist
