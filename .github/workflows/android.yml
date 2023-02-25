@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: true
 
@@ -31,7 +31,7 @@ jobs:
         run: $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "cmdline-tools;latest" "platform-tools" "platforms;android-31" "build-tools;31.0.0" "ndk;$NDK_VERSION"
 
       - name: Install Qt (Android)
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           cached: ${{steps.cache-qt.outputs.cache-hit}}
           version: ${{env.QT_VERSION}}
@@ -39,7 +39,7 @@ jobs:
           target: ${{env.QT_TARGET}}
 
       - name: Install Qt (Linux)
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           cached: ${{steps.cache-qt.outputs.cache-hit}}
           version: ${{env.QT_VERSION}}
