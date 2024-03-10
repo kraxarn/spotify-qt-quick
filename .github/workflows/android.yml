@@ -61,7 +61,7 @@ jobs:
         uses: r0adkll/sign-android-release@v1
         id: signApk
         with:
-          releaseDirectory: spotify-qt-quick/android-build/build/outputs/apk/release
+          releaseDirectory: android-build/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
           alias: 'spotify-qt-quick'
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
