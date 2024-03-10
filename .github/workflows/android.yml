@@ -22,13 +22,6 @@ jobs:
         with:
           submodules: true
 
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v3
-        with:
-          path: ${{runner.workspace}}/Qt
-          key: qt-${{env.QT_VERSION}}-${{env.QT_ARCH}}-${{env.QT_HOST_ARCH}}
-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -43,7 +36,7 @@ jobs:
       - name: Install Qt (Android)
         uses: jurplel/install-qt-action@v3
         with:
-          cached: ${{steps.cache-qt.outputs.cache-hit}}
+          cache: true
           version: ${{env.QT_VERSION}}
           arch: ${{env.QT_ARCH}}
           target: ${{env.QT_TARGET}}
@@ -51,7 +44,7 @@ jobs:
       - name: Install Qt (Linux)
         uses: jurplel/install-qt-action@v3
         with:
-          cached: ${{steps.cache-qt.outputs.cache-hit}}
+          cache: true
           version: ${{env.QT_VERSION}}
           arch: ${{env.QT_HOST_ARCH}}
 
