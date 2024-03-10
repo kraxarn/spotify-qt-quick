@@ -55,7 +55,9 @@ jobs:
         run: ${{runner.workspace}}/Qt/$QT_VERSION/$QT_ARCH/bin/qt-cmake . -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
       - name: Build
-        run: cmake --build .
+        run: |
+          cmake --build .
+          mv android-build/build/outputs/apk/release/android-build-release-unsigned.apk android-build/build/outputs/apk/release/spotify-qt-quick.apk
 
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
