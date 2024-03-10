@@ -63,7 +63,7 @@ jobs:
         with:
           releaseDirectory: spotify-qt-quick/android-build/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
-          alias: ${{ secrets.KEYSTORE_ALIAS }}
+          alias: 'spotify-qt-quick'
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEYSTORE_PASSWORD }}
 
