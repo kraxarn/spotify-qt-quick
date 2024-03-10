@@ -57,6 +57,15 @@ jobs:
       - name: Build
         run: cmake --build .
 
+      - name: Sign APK
+        env:
+          FILE: ${{secrets.KEYSTORE_FILE}}
+          ALIAS: ${{secrets.KEYSTORE_ALIAS}}
+          PASSWORD: ${{secrets.KEYSTORE_PASSWORD}}
+        run: |
+            echo -n "$KEYSTORE" | base64 -d > "release.keystore"
+            apksigner sign --ks "release.keystore" --ks-key-alias "$ALIAS" --ks-pass "pass:$PASSWORD" "spotify-qt-quick/android-build/build/outputs/apk/release/android-build-release-unsigned.apk"
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
