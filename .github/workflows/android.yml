@@ -4,11 +4,14 @@ on: [ push, pull_request ]
 
 env:
   BUILD_TYPE: Release
-  QT_VERSION: "6.4.3"
+  QT_VERSION: "6.6.2"
   QT_ARCH: "android_arm64_v8a"
   QT_HOST_ARCH: "gcc_64"
   QT_TARGET: "android"
-  NDK_VERSION: "23.1.7779620"
+  # https://doc.qt.io/qt-6/android-getting-started.html
+  PLATFORM_VERSION: "33"
+  BUILD_TOOLS_VERSION: "33.0.0"
+  NDK_VERSION: "25.1.8937393"
 
 jobs:
   build:
@@ -26,9 +29,8 @@ jobs:
           path: ${{runner.workspace}}/Qt
           key: qt-${{env.QT_VERSION}}-${{env.QT_ARCH}}-${{env.QT_HOST_ARCH}}
 
-      # https://doc.qt.io/qt-6/android-getting-started.html
       - name: Install dependencies
-        run: $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "cmdline-tools;latest" "platform-tools" "platforms;android-31" "build-tools;31.0.0" "ndk;$NDK_VERSION"
+        run: $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "cmdline-tools;latest" "platform-tools" "platforms;android-$PLATFORM_VERSION" "build-tools;$BUILD_TOOLS_VERSION" "ndk;$NDK_VERSION"
 
       - name: Install Qt (Android)
         uses: jurplel/install-qt-action@v3
