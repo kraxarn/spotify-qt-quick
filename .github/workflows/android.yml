@@ -58,16 +58,17 @@ jobs:
         run: cmake --build .
 
       - name: Sign APK
-        env:
-          KEYSTORE: ${{secrets.KEYSTORE_FILE}}
-          ALIAS: ${{secrets.KEYSTORE_ALIAS}}
-          PASSWORD: ${{secrets.KEYSTORE_PASSWORD}}
-        run: |
-            echo -n "$KEYSTORE" | base64 -d > "release.keystore"
-            apksigner sign --ks "release.keystore" --ks-key-alias "$ALIAS" --ks-pass "pass:$PASSWORD" "spotify-qt-quick/android-build/build/outputs/apk/release/android-build-release-unsigned.apk"
+        uses: r0adkll/sign-android-release@v1
+        id: signApk
+        with:
+          releaseDirectory: spotify-qt-quick/android-build/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
+          alias: ${{ secrets.KEYSTORE_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEYSTORE_PASSWORD }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: spotify-qt-quick
-          path: ${{runner.workspace}}/spotify-qt-quick/android-build/build/outputs/apk/release/*.apk
+          path: ${{steps.signApk.outputs.signedReleaseFile}}
