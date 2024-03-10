@@ -29,8 +29,10 @@ jobs:
           path: ${{runner.workspace}}/Qt
           key: qt-${{env.QT_VERSION}}-${{env.QT_ARCH}}-${{env.QT_HOST_ARCH}}
 
-      - name: Install dependencies
-        run: $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "cmdline-tools;latest" "platform-tools" "platforms;android-$PLATFORM_VERSION" "build-tools;$BUILD_TOOLS_VERSION" "ndk;$NDK_VERSION"
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'cmdline-tools;latest platform-tools platforms;android-${{env.PLATFORM_VERSION}} build-tools;${{env.BUILD_TOOLS_VERSION}} ndk;${{env.NDK_VERSION}}'
 
       - name: Install Qt (Android)
         uses: jurplel/install-qt-action@v3
