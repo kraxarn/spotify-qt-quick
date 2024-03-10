@@ -59,7 +59,7 @@ jobs:
 
       - name: Sign APK
         env:
-          FILE: ${{secrets.KEYSTORE_FILE}}
+          KEYSTORE: ${{secrets.KEYSTORE_FILE}}
           ALIAS: ${{secrets.KEYSTORE_ALIAS}}
           PASSWORD: ${{secrets.KEYSTORE_PASSWORD}}
         run: |
