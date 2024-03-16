@@ -1,15 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
-project(spotify-qt-quick LANGUAGES CXX VERSION 2.0)
-
-# Qt
-set(CMAKE_AUTOMOC ON)
+project(spotify-qt-quick LANGUAGES CXX VERSION 1.90)
 
 # C++17
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find Qt
-find_package(Qt6 COMPONENTS Core Gui Quick QuickControls2 REQUIRED)
+find_package(Qt6 6.5 COMPONENTS Core Gui Quick QuickControls2 REQUIRED)
+
+qt_standard_project_setup(REQUIRES 6.5)
 
 # Create main executable
 qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE MANUAL_FINALIZATION)
@@ -69,8 +68,28 @@ if (ANDROID)
 	qt_android_generate_deployment_settings(${PROJECT_NAME})
 endif ()
 
+set_target_properties(${PROJECT_NAME} PROPERTIES
+	MACOSX_BUNDLE_GUI_IDENTIFIER com.kraxarn.spotify-qt-quick
+	MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+	MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+	MACOSX_BUNDLE TRUE
+	WIN32_EXECUTABLE TRUE
+)
+
 # Link Qt
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Quick Qt6::QuickControls2)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+	Qt6::Core
+	Qt6::Gui
+	Qt6::Quick
+	Qt6::QuickControls2
+)
+
+include(GNUInstallDirs)
+install(TARGETS ${PROJECT_NAME}
+	BUNDLE DESTINATION .
+	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
 
 # spotify-qt-lib
 set(QT_VERSION_MAJOR 6)
