@@ -7,9 +7,13 @@ qt_add_qml_module(${PROJECT_NAME}
 	NO_RESOURCE_TARGET_PATH
 	QML_FILES
 	qml/Home.qml
+	qml/Library.qml
 	qml/MainFooter.qml
 	qml/MainHeader.qml
+	qml/MainNavigationBar.qml
 	qml/MainPage.qml
+	qml/NowPlaying.qml
+	qml/Search.qml
 	qml/SetupPage.qml
 	RESOURCES
 	res/ic/album.svg

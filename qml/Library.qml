@@ -3,5 +3,5 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Label {
-	text: "Search"
+	text: "Library"
 }

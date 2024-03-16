@@ -5,6 +5,8 @@
 
 #include "model/home.hpp"
 
+#include <element/greeter.hpp>
+
 #include <QQmlContext>
 #include <QCoreApplication>
 #include <QQuickStyle>
@@ -42,6 +44,9 @@ void QmlManager::defineTypes()
 
 	// Models
 	qmlRegisterType<Model::Home>("Model.Home", 1, 0, "HomeModel");
+
+	// Helpers
+	qmlRegisterType<Greeter>("Greeter", 1, 0, "Greeter");
 }
 
 void QmlManager::load(const QString &url)

@@ -21,16 +21,30 @@ ApplicationWindow {
 		return `qrc:/res/ic/${name}.svg`
 	}
 
-	header: MainHeader {
-	}
-
 	footer: MainFooter {
-		height: 72
 	}
 
 	StackView {
+		id: content
 		anchors.fill: parent
+		initialItem: homePage
+	}
 
-		Home { }
+	Component {
+		id: homePage
+		Home {
+		}
+	}
+
+	Component {
+		id: searchPage
+		Search {
+		}
+	}
+
+	Component {
+		id: libraryPage
+		Library {
+		}
 	}
 }
