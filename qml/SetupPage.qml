@@ -50,6 +50,7 @@ ApplicationWindow {
 		}
 
 		WelcomeLabel {
+			Layout.fillWidth: true
 			Layout.topMargin: 32
 			Layout.bottomMargin: 32
 		}
