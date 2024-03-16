@@ -3,7 +3,7 @@
 #include <QCoreApplication>
 
 Page::Setup::Setup()
-	: settings(nullptr)
+	: settings(this)
 {
 }
 
