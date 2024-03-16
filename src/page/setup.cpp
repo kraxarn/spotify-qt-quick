@@ -2,15 +2,9 @@
 #include "util/url.hpp"
 #include <QCoreApplication>
 
-Page::Setup::Setup(QObject *parent)
-	: settings(this),
-	QObject(parent)
+Page::Setup::Setup()
+	: settings(nullptr)
 {
-}
-
-void Page::Setup::close()
-{
-	QCoreApplication::quit();
 }
 
 void Page::Setup::openDashboard()
@@ -21,6 +15,9 @@ void Page::Setup::openDashboard()
 void Page::Setup::authenticate()
 {
 	// TODO: Break out logic from spotify-qt
+
+	authButtonEnabled = false;
+	emit authButtonEnabledChanged();
 }
 
 //region clientId
@@ -56,3 +53,8 @@ void Page::Setup::setClientSecret(const QString &value)
 }
 
 //endregion
+
+auto Page::Setup::getAuthButtonEnabled() const -> bool
+{
+	return authButtonEnabled;
+}
