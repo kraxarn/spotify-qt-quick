@@ -1,3 +1,4 @@
+add_subdirectory(element)
 add_subdirectory(lib)
 add_subdirectory(model)
 add_subdirectory(item)

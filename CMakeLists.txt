@@ -23,6 +23,7 @@ include(QmlModule.cmake)
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/src"
 	# QML requires headers in root
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/element"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/page"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/qml")
 
