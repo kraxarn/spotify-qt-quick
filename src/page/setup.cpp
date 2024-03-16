@@ -7,7 +7,7 @@ Page::Setup::Setup()
 {
 }
 
-void Page::Setup::openDashboard()
+void Page::Setup::openDashboard() const
 {
 	Url::open("https://developer.spotify.com/dashboard/applications", parent());
 }

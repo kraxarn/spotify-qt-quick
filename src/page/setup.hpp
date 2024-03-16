@@ -17,7 +17,7 @@ namespace Page
 	public:
 		Setup();
 
-		Q_INVOKABLE void openDashboard();
+		Q_INVOKABLE void openDashboard() const;
 		Q_INVOKABLE void authenticate();
 
 		[[nodiscard]]
