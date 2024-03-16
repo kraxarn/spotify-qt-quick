@@ -1,4 +1,4 @@
-import QtQuick.Controls 2.12
+import QtQuick.Controls
 
 Label {
 	text: "Before using the app, you need to setup your Spotify Web API keys.\n" +

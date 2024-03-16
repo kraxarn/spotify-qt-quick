@@ -15,6 +15,7 @@ qt_add_qml_module(${PROJECT_NAME}
 	qml/NowPlaying.qml
 	qml/Search.qml
 	qml/SetupPage.qml
+	qml/WelcomeLabel.qml
 	RESOURCES
 	res/ic/album.svg
 	res/ic/arrow_back.svg

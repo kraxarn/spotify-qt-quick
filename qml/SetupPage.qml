@@ -1,9 +1,9 @@
-import Page.Setup 1.0
+import Page.Setup
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls.Material 2.12
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Controls.Material
 
 ApplicationWindow {
 	id: root
@@ -17,10 +17,10 @@ ApplicationWindow {
 		id: setup
 	}
 
-	OpenLinkDialog {
-		id: openLinkDialog
-		width: root.width * 0.9
-	}
+	// OpenLinkDialog {
+	// 	id: openLinkDialog
+	// 	width: root.width * 0.9
+	// }
 
 	Dialog {
 		id: authErrorDialog
@@ -38,58 +38,58 @@ ApplicationWindow {
 			left: parent.left
 			right: parent.right
 			top: parent.top
-			margins: 16
+			leftMargin: 32
+			rightMargin: 32
+			topMargin: 96
 		}
+
 		Label {
 			text: "Welcome to spotify-qt-quick!"
-			font.pointSize: 16
+			font.pointSize: 24
+			font.weight: 700
 		}
+
 		WelcomeLabel {
-			Layout.topMargin: 16
+			Layout.topMargin: 32
+			Layout.bottomMargin: 32
 		}
+
 		Label {
 			text: "Client ID"
-			Layout.topMargin: 16
+			Layout.leftMargin: 4
 		}
+
 		TextField {
 			id: clientId
 			Layout.fillWidth: true
 			text: setup.clientId
 		}
+
 		Label {
 			text: "Client Secret"
 			Layout.topMargin: 16
+			Layout.leftMargin: 4
 		}
+
 		TextField {
 			id: clientSecret
 			Layout.fillWidth: true
 			text: setup.clientSecret
 		}
-	}
 
-	ColumnLayout {
-		anchors {
-			left: parent.left
-			right: parent.right
-			bottom: parent.bottom
-			leftMargin: 24
-			rightMargin: 24
-			bottomMargin: 24
-		}
-		Button {
-			text: "Cancel"
-			Layout.fillWidth: true
-			onClicked: setup.close()
-		}
-		Button {
-			text: "Spotify Dashboard"
-			Layout.fillWidth: true
-			onClicked: setup.openDashboard()
-		}
 		Button {
 			text: "Authenticate"
+			enabled: setup.authButtonEnabled
 			Layout.fillWidth: true
+			Layout.topMargin: 32
 			onClicked: setup.authenticate()
+		}
+
+		Button {
+			text: "Spotify Dashboard"
+			flat: true
+			Layout.fillWidth: true
+			onClicked: setup.openDashboard()
 		}
 	}
 }
