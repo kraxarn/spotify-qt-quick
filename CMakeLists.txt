@@ -62,13 +62,6 @@ if (WIN32)
 	target_link_options(${PROJECT_NAME} PRIVATE -mwindows)
 endif ()
 
-# Android config
-if (ANDROID)
-	# https://bugreports.qt.io/browse/QTBUG-110326
-	set_target_properties(${PROJECT_NAME} PROPERTIES QT_ANDROID_TARGET_SDK_VERSION 32)
-	qt_android_generate_deployment_settings(${PROJECT_NAME})
-endif ()
-
 set_target_properties(${PROJECT_NAME} PROPERTIES
 	# macOS
 	MACOSX_BUNDLE_GUI_IDENTIFIER com.kraxarn.spotify_qt_quick
