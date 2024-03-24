@@ -7,3 +7,4 @@ Icon=spotify-qt
 Exec=spotify-qt
 Terminal=false
 Categories=Audio;Music;Player;AudioVideo;
+MimeType=x-scheme-handler/sptqt;
