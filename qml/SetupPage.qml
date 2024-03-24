@@ -64,6 +64,7 @@ ApplicationWindow {
 			id: clientId
 			Layout.fillWidth: true
 			text: setup.clientId
+			onEditingFinished: () => setup.clientId = text
 		}
 
 		Label {
@@ -76,6 +77,7 @@ ApplicationWindow {
 			id: clientSecret
 			Layout.fillWidth: true
 			text: setup.clientSecret
+			onEditingFinished: () => setup.clientSecret = text
 		}
 
 		Button {
