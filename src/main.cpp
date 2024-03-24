@@ -1,15 +1,14 @@
 #include "qmlmanager.hpp"
 #include "lib/qtquickpaths.hpp"
 
-#include <QGuiApplication>
-#include <QCoreApplication>
 #include <QCommandLineParser>
+#include <QGuiApplication>
 
 auto main(int argc, char **argv) -> int
 {
 	// Set name for settings etc.
-	QCoreApplication::setOrganizationName("kraxarn");
-	QCoreApplication::setApplicationName("spotify-qt");
+	QCoreApplication::setOrganizationName(ORG_NAME);
+	QCoreApplication::setApplicationName(APP_NAME);
 	QCoreApplication::setApplicationVersion(APP_VERSION);
 
 	// Create Qt application
