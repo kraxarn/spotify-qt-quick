@@ -79,10 +79,16 @@ ApplicationWindow {
 		}
 
 		Button {
+			text: setup.redirectUriText
+			Layout.fillWidth: true
+			Layout.topMargin: 32
+			onClicked: setup.copyRedirectUri()
+		}
+
+		Button {
 			text: "Authenticate"
 			enabled: setup.authButtonEnabled
 			Layout.fillWidth: true
-			Layout.topMargin: 32
 			onClicked: setup.authenticate()
 		}
 

@@ -1,9 +1,13 @@
 #include "page/setup.hpp"
 #include "util/url.hpp"
+
+#include <QClipboard>
 #include <QCoreApplication>
+#include <QGuiApplication>
 
 Page::Setup::Setup()
-	: settings(this)
+	: settings(this),
+	redirectUriText(QStringLiteral("Copy redirect uri"))
 {
 }
 
@@ -18,6 +22,15 @@ void Page::Setup::authenticate()
 
 	authButtonEnabled = false;
 	emit authButtonEnabledChanged();
+}
+
+void Page::Setup::copyRedirectUri()
+{
+	auto *clipboard = QGuiApplication::clipboard();
+	clipboard->setText(QStringLiteral("sptqt://auth"), QClipboard::Clipboard);
+
+	redirectUriText = QStringLiteral("Copied redirect uri!");
+	emit redirectUriTextChanged();
 }
 
 //region clientId
@@ -57,4 +70,9 @@ void Page::Setup::setClientSecret(const QString &value)
 auto Page::Setup::getAuthButtonEnabled() const -> bool
 {
 	return authButtonEnabled;
+}
+
+auto Page::Setup::getRedirectUriText() const -> const QString &
+{
+	return redirectUriText;
 }
